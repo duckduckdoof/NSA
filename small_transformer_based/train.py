@@ -23,6 +23,11 @@ from llm.selector_prompt import generate_selector_prompt
 from task import Task
 from shutil import rmtree
 
+# LTNs
+from LTNtorch import ltn
+
+# Constants
+N_EMBED = 512
 
 class SinusoidalPositionalEncoding(nn.Module):
     def __init__(self, n_embd, max_len=6500):
@@ -414,9 +419,107 @@ class CustomTokenizer:
             self.vocab = json.load(f)
             self.inv_vocab = {v: k for k, v in self.vocab.items()}
 
+# LTN Implementations
+class Shape(nn.Module):
+    """
+    LTN implementation which feeds its loss directly into the loss of the transformer.
+
+    This class is for the Shape predicate.
+    """
+    def __init__(self, embed_dim):
+        super(Shape, self).__init__()
+        self.relu = nn.ReLU()
+        self.dense1 = nn.Linear(embed_dim, 32)
+        self.dense2 = nn.Linear(32, 1)
+
+    def forward(self, x):
+        x = self.relu(self.dense1)
+        x = self.relu(self.dense2)
+        return x
+
+class Anchor(nn.Module):
+    """
+    LTN implementation which feeds its loss directly into the loss of the transformer.
+
+    This class is for the Anchor predicate.
+    """
+    def __init__(self, embed_dim):
+        super(Anchor, self).__init__()
+        self.relu = nn.ReLU()
+        self.dense1 = nn.Linear(embed_dim, 32)
+        self.dense2 = nn.Linear(32, 1)
+
+    def forward(self, x):
+        x = self.relu(self.dense1)
+        x = self.relu(self.dense2)
+        return x
+
+class Movable(nn.Module):
+    """
+    LTN implementation which feeds its loss directly into the loss of the transformer.
+
+    This class is for the Movable predicate.
+    """
+    def __init__(self, embed_dim):
+        super(Movable, self).__init__()
+        self.relu = nn.ReLU()
+        self.dense1 = nn.Linear(embed_dim, 32)
+        self.dense2 = nn.Linear(32, 1)
+
+    def forward(self, x):
+        x = self.relu(self.dense1)
+        x = self.relu(self.dense2)
+        return x
+
+# LTN Connectives
+Not = ltn.core.Connective(ltn.fuzzy_ops.NotStandard())
+And = ltn.core.Connective(ltn.fuzzy_ops.AndProd())
+Or = ltn.core.Connective(ltn.fuzzy_ops.OrProbSum())
+Implies = ltn.core.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
+Equiv = ltn.core.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
+Forall = ltn.core.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
+Exists = ltn.core.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
+
+S = ltn.core.Predicate(Shape(N_EMBED))
+A = ltn.core.Predicate(Anchor(N_EMBED))
+M = ltn.core.Predicate(Movable(N_EMBED))
+
+# LTN Functions
+# Used for calculating affinity for two conceptArc concepts: Color and Center
+def compute_color_ltn_loss(node_embeddings, logits, color_idx, c_predicate):
+    nodes = ltn.core.Variable("x", node_embeddings)
+    color_probs = torch.sigmoid(logits[:, color_idx])
+    proposes_color = ltn.core.Variable("proposes_color", color_probs.unsqueeze(1))
+
+    # Axiom: Forall x, IsTargetShape(x) <-> ProposesColor(x)
+    color_axiom_sat = Forall(
+        nodes,
+        Equiv(c_predicate(nodes), proposes_color)
+    )
+    return 1.0 - color_axiom_sat.value
+
+def compute_center_ltn_loss(node_embeddings, logits, trans_idx, m_predicate, a_predicate):
+    x_nodes = ltn.core.Variable("x", node_embeddings)
+    y_nodes = ltn.core.Variable("y", node_embeddings)
+
+    translate_probs = torch.sigmoid(logits[:, trans_idx])
+    N = translate_probs.size(0)
+    pariwise_probs = translate_probs.unsqueeze(1).expand(N, N).unsqueeze(2)
+    proposes_trans = ltn.core.Variable("proposes_trans", pariwise_probs)
+
+    # Axiom: Forall x, y: (IsMovable(x) AND IsAnchor(y) <-> ProposesTranslate(x, y))
+    center_axiom_sat = Forall(
+        (x_nodes, y_nodes),
+        Equiv(
+            And(m_predicate(x_nodes), a_predicate(y_nodes)),
+            proposes_trans
+        )
+    )
+    return 1.0 - center_axiom_sat
+
 # Transformer Model
 class CustomTransformer(nn.Module):
-    def __init__(self, vocab_size, n_positions=512, n_embd=512, n_layer=8, n_head=8, dropout=0., use_2dpe=False, num_cls_tokens=3):
+    def __init__(self, vocab_size, n_positions=512, n_embd=N_EMBED, n_layer=8, n_head=8, dropout=0., use_2dpe=False, num_cls_tokens=3):
         super(CustomTransformer, self).__init__()
         n_inner = 4 * n_embd
         self.num_cls_tokens = num_cls_tokens
@@ -486,7 +589,20 @@ def calculate_file_hash(file_path):
     return hasher.hexdigest()
 
 # Training Function
-def train(model, train_loader, val_loader, train_eval_loader, optimizer, scheduler, tokenizer, device, epoch, save_iterations, total_params_millions, plot_dir):
+def train(
+        model, 
+        train_loader, 
+        val_loader, 
+        train_eval_loader, 
+        optimizer, 
+        scheduler, 
+        tokenizer, 
+        device, 
+        epoch, 
+        save_iterations, 
+        total_params_millions, 
+        plot_dir
+        ):
     model.train()
     progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False)
     batch_losses = 0
@@ -497,9 +613,13 @@ def train(model, train_loader, val_loader, train_eval_loader, optimizer, schedul
         output_ids = output_ids[output_ids != tokenizer.vocab["<EOS>"]]
         optimizer.zero_grad()
         attention_mask = (input_ids != tokenizer.vocab["<PAD>"]).to(device)
+
+        # Use these logits for the LTN
         logits = model(input_ids, attention_mask=attention_mask)
         logits = logits.view(-1, logits.size(-1))
         targets = output_ids.view(-1)
+
+        # This is where the LTN loss should be accounted for
         loss = nn.CrossEntropyLoss(ignore_index=tokenizer.vocab["<PAD>"])(logits, targets)
         progress_bar.set_postfix(loss=loss.item())
         loss.backward()
