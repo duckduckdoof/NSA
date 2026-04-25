@@ -486,7 +486,7 @@ M = ltn.core.Predicate(Movable(N_EMBED))
 
 # LTN Functions
 # Used for calculating affinity for two conceptArc concepts: Color and Center
-def compute_color_ltn_loss(node_embeddings, logits, color_idx, c_predicate):
+def compute_color_ltn_loss(node_embeddings, logits, color_idx, s_predicate):
     nodes = ltn.core.Variable("x", node_embeddings)
     color_probs = torch.sigmoid(logits[:, color_idx])
     proposes_color = ltn.core.Variable("proposes_color", color_probs.unsqueeze(1))
@@ -494,9 +494,9 @@ def compute_color_ltn_loss(node_embeddings, logits, color_idx, c_predicate):
     # Axiom: Forall x, IsTargetShape(x) <-> ProposesColor(x)
     color_axiom_sat = Forall(
         nodes,
-        Equiv(c_predicate(nodes), proposes_color)
+        Equiv(s_predicate(nodes), proposes_color)
     )
-    return 1.0 - color_axiom_sat.value
+    return 1.0 - color_axiom_sat
 
 def compute_center_ltn_loss(node_embeddings, logits, trans_idx, m_predicate, a_predicate):
     x_nodes = ltn.core.Variable("x", node_embeddings)
@@ -537,6 +537,7 @@ class CustomTransformer(nn.Module):
             for _ in range(n_layer)
         ])
         self.fc_out = nn.Linear(n_embd, vocab_size)
+        self.cls_outputs = None
 
     def forward(self, input_ids, attention_mask=None):
         x = self.embedding(input_ids)
@@ -550,8 +551,8 @@ class CustomTransformer(nn.Module):
             attention_mask = torch.cat((cls_attention_mask, attention_mask), dim=1)
         for block in self.transformer_blocks:
             x = block(x, src_key_padding_mask=(~attention_mask.bool()) if attention_mask is not None else None)
-        cls_outputs = x[:, :self.num_cls_tokens, :]
-        logits = self.fc_out(cls_outputs)
+        self.cls_outputs = x[:, :self.num_cls_tokens, :]
+        logits = self.fc_out(self.cls_outputs)
         return logits
 
 # Dataset Implementation
@@ -595,13 +596,19 @@ def train(
         val_loader, 
         train_eval_loader, 
         optimizer, 
+        s_ltn_optimizer,
+        a_ltn_optimizer,
+        m_ltn_optimizer,
         scheduler, 
         tokenizer, 
         device, 
         epoch, 
         save_iterations, 
         total_params_millions, 
-        plot_dir
+        plot_dir,
+        lambda_ltn=0.001,
+        ltn_warmup=True,
+        ltn_apply_epoch=10
         ):
     model.train()
     progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False)
@@ -615,12 +622,35 @@ def train(
         attention_mask = (input_ids != tokenizer.vocab["<PAD>"]).to(device)
 
         # Use these logits for the LTN
+        embeddings = model.cls_outputs
         logits = model(input_ids, attention_mask=attention_mask)
         logits = logits.view(-1, logits.size(-1))
         targets = output_ids.view(-1)
 
+        # Compute LTN Losses
+        s_ltn_optimizer.zero_grad()
+        color_loss = lambda_ltn * compute_color_ltn_loss(embeddings, logits, 0, S)
+        color_loss.backward()
+        s_ltn_optimizer.step()
+        print(f"color loss: %.3f" % (color_loss.item()))
+
+        m_ltn_optimizer.zero_grad()
+        a_ltn_optimizer.zero_grad()
+        center_loss = lambda_ltn * compute_center_ltn_loss(embeddings, logits, 5, M, A)
+        center_loss.backward()
+        m_ltn_optimizer.step()
+        a_ltn_optimizer.step()
+        print(f"center loss: %.3f" % (center_loss.item()))
+
+        ltn_loss = color_loss + center_loss
+
         # This is where the LTN loss should be accounted for
         loss = nn.CrossEntropyLoss(ignore_index=tokenizer.vocab["<PAD>"])(logits, targets)
+
+        # Add the LTN term (with lambda)
+        if ltn_warmup and epoch >= ltn_apply_epoch:
+            loss = loss + ltn_loss
+
         progress_bar.set_postfix(loss=loss.item())
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
@@ -696,6 +726,9 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
         model = nn.DataParallel(model)
     model = model.to(device)
     optimizer = optim.AdamW(model.parameters(), lr=5e-5)
+    s_ltn_optimizer = optim.Adam(S.parameters(), lr=0.001)
+    a_ltn_optimizer = optim.Adam(A.parameters(), lr=0.001)
+    m_ltn_optimizer = optim.Adam(M.parameters(), lr=0.001)
     scheduler = lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total_params_millions = total_params / 1_000_000
@@ -704,7 +737,23 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
     os.makedirs(plot_dir, exist_ok=True)
     for epoch in range(epochs):
         print(f"Starting Epoch {epoch + 1}/{epochs}")
-        train(model, train_loader, val_loader, train_eval_loader, optimizer, scheduler, tokenizer, device, epoch, save_iterations, total_params_millions, plot_dir)
+        train(
+            model, 
+            train_loader, 
+            val_loader, 
+            train_eval_loader, 
+            optimizer, 
+            s_ltn_optimizer, 
+            a_ltn_optimizer,
+            m_ltn_optimizer,
+            scheduler, 
+            tokenizer, 
+            device, 
+            epoch, 
+            save_iterations, 
+            total_params_millions, 
+            plot_dir
+        )
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train a Custom Transformer Model")
