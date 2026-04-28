@@ -6,3 +6,10 @@ final_data8/
 
 small_transformer_based/results
 small_transformer_based/results_no_ltn
+
+full_trans.json
+dataset_cache.txt
+eval_no_ltn.txt
+eval_ltn.txt
+training_data_summary.json
+vocab.json
