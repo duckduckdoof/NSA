@@ -2,6 +2,7 @@ import os
 import re
 import math
 import json
+from typing import Any
 import torch
 import random
 import hashlib
@@ -24,7 +25,7 @@ from task import Task
 from shutil import rmtree
 
 # LTNs
-from LTNtorch import ltn
+import ltn
 
 # Constants
 N_EMBED = 512
@@ -420,92 +421,55 @@ class CustomTokenizer:
             self.inv_vocab = {v: k for k, v in self.vocab.items()}
 
 # LTN Implementations
-class Shape(nn.Module):
-    """
-    LTN implementation which feeds its loss directly into the loss of the transformer.
-
-    This class is for the Shape predicate.
-    """
-    def __init__(self, embed_dim):
-        super(Shape, self).__init__()
+class ColorPredicate(nn.Module):
+    def __init__(self, embed_dim) -> None:
+        super(ColorPredicate, self).__init__()
         self.relu = nn.ReLU()
+        self.sigmoid = nn.Sigmoid()
         self.dense1 = nn.Linear(embed_dim, 32)
-        self.dense2 = nn.Linear(32, 1)
+        self.dense2 = nn.Linear(embed_dim, 1)
 
     def forward(self, x):
-        x = self.relu(self.dense1)
-        x = self.relu(self.dense2)
-        return x
-
-class Anchor(nn.Module):
-    """
-    LTN implementation which feeds its loss directly into the loss of the transformer.
-
-    This class is for the Anchor predicate.
-    """
-    def __init__(self, embed_dim):
-        super(Anchor, self).__init__()
-        self.relu = nn.ReLU()
-        self.dense1 = nn.Linear(embed_dim, 32)
-        self.dense2 = nn.Linear(32, 1)
-
-    def forward(self, x):
-        x = self.relu(self.dense1)
-        x = self.relu(self.dense2)
-        return x
-
-class Movable(nn.Module):
-    """
-    LTN implementation which feeds its loss directly into the loss of the transformer.
-
-    This class is for the Movable predicate.
-    """
-    def __init__(self, embed_dim):
-        super(Movable, self).__init__()
-        self.relu = nn.ReLU()
-        self.dense1 = nn.Linear(embed_dim, 32)
-        self.dense2 = nn.Linear(32, 1)
-
-    def forward(self, x):
-        x = self.relu(self.dense1)
-        x = self.relu(self.dense2)
-        return x
+        x = self.dense1(x)
+        x = self.relu(x)
+        x = self.dense2(x)
+        out = self.sigmoid(x)
+        return out
 
 # LTN Connectives
-Not = ltn.core.Connective(ltn.fuzzy_ops.NotStandard())
-And = ltn.core.Connective(ltn.fuzzy_ops.AndProd())
-Or = ltn.core.Connective(ltn.fuzzy_ops.OrProbSum())
-Implies = ltn.core.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
-Equiv = ltn.core.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
-Forall = ltn.core.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
-Exists = ltn.core.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
+Not = ltn.Connective(ltn.fuzzy_ops.NotStandard())
+And = ltn.Connective(ltn.fuzzy_ops.AndProd())
+Or = ltn.Connective(ltn.fuzzy_ops.OrProbSum())
+Implies = ltn.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
+Equiv = ltn.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
+Forall = ltn.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
+Exists = ltn.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
 
-S = ltn.core.Predicate(Shape(N_EMBED))
-A = ltn.core.Predicate(Anchor(N_EMBED))
-M = ltn.core.Predicate(Movable(N_EMBED))
+# LTN predicates
+C = ltn.Predicate(model=ColorPredicate(N_EMBED))
 
 # LTN Functions
 # Used for calculating affinity for two conceptArc concepts: Color and Center
 def compute_color_ltn_loss(node_embeddings, logits, color_idx, s_predicate):
-    nodes = ltn.core.Variable("x", node_embeddings)
+    nodes = ltn.Variable("x", node_embeddings)
     color_probs = torch.sigmoid(logits[:, color_idx])
-    proposes_color = ltn.core.Variable("proposes_color", color_probs.unsqueeze(1))
+    proposes_color = ltn.Variable("proposes_color", color_probs.unsqueeze(1))
 
     # Axiom: Forall x, IsTargetShape(x) <-> ProposesColor(x)
     color_axiom_sat = Forall(
         nodes,
         Equiv(s_predicate(nodes), proposes_color)
     )
-    return 1.0 - color_axiom_sat
+    return 1.0 - color_axiom_sat.value
 
 def compute_center_ltn_loss(node_embeddings, logits, trans_idx, m_predicate, a_predicate):
-    x_nodes = ltn.core.Variable("x", node_embeddings)
-    y_nodes = ltn.core.Variable("y", node_embeddings)
+    x_nodes = ltn.Variable("x", node_embeddings)
+    y_nodes = ltn.Variable("y", node_embeddings)
 
     translate_probs = torch.sigmoid(logits[:, trans_idx])
     N = translate_probs.size(0)
-    pariwise_probs = translate_probs.unsqueeze(1).expand(N, N).unsqueeze(2)
-    proposes_trans = ltn.core.Variable("proposes_trans", pariwise_probs)
+    pairwise_probs = translate_probs.unsqueeze(1).expand(N, N).unsqueeze(2)
+    proposes_trans = ltn.Variable("proposes_trans", pairwise_probs)
 
     # Axiom: Forall x, y: (IsMovable(x) AND IsAnchor(y) <-> ProposesTranslate(x, y))
     center_axiom_sat = Forall(
@@ -515,7 +479,7 @@ def compute_center_ltn_loss(node_embeddings, logits, trans_idx, m_predicate, a_p
             proposes_trans
         )
     )
-    return 1.0 - center_axiom_sat
+    return 1.0 - center_axiom_sat.value
 
 # Transformer Model
 class CustomTransformer(nn.Module):
@@ -537,7 +501,6 @@ class CustomTransformer(nn.Module):
             for _ in range(n_layer)
         ])
         self.fc_out = nn.Linear(n_embd, vocab_size)
-        self.cls_outputs = None
 
     def forward(self, input_ids, attention_mask=None):
         x = self.embedding(input_ids)
@@ -551,9 +514,43 @@ class CustomTransformer(nn.Module):
             attention_mask = torch.cat((cls_attention_mask, attention_mask), dim=1)
         for block in self.transformer_blocks:
             x = block(x, src_key_padding_mask=(~attention_mask.bool()) if attention_mask is not None else None)
-        self.cls_outputs = x[:, :self.num_cls_tokens, :]
-        logits = self.fc_out(self.cls_outputs)
+        cls_outputs = x[:, :self.num_cls_tokens, :]
+        logits = self.fc_out(cls_outputs)
         return logits
+
+class CombinedModel(nn.Module):
+    """
+    Class which includes both the custom transformer and the LTN.
+    
+    It's all got to be in a single pipeline.
+    """
+    def __init__(
+            self, 
+            vocab_size, 
+            n_positions=512, 
+            n_embd=N_EMBED, 
+            n_layer=8, 
+            n_head=8, 
+            dropout=8, 
+            use_2dpe=False, 
+            num_cls_tokens=3
+            ) -> None:
+        super(CombinedModel, self).__init__()
+        self.custom_trans = CustomTransformer(
+            vocab_size, 
+            n_positions, 
+            n_embd, 
+            n_layer, 
+            n_head, 
+            dropout, 
+            use_2dpe, 
+            num_cls_tokens
+        )
+        self.C = ltn.Predicate(model=ColorPredicate(N_EMBED))
+
+    def forward(self, input_ids, attention_mask=None):
+        trans_logits = self.custom_trans(input_ids, attention_mask)
+        return trans_logits
 
 # Dataset Implementation
 class CustomDataset(Dataset):
@@ -596,9 +593,6 @@ def train(
         val_loader, 
         train_eval_loader, 
         optimizer, 
-        s_ltn_optimizer,
-        a_ltn_optimizer,
-        m_ltn_optimizer,
         scheduler, 
         tokenizer, 
         device, 
@@ -606,9 +600,6 @@ def train(
         save_iterations, 
         total_params_millions, 
         plot_dir,
-        lambda_ltn=0.001,
-        ltn_warmup=True,
-        ltn_apply_epoch=10
         ):
     model.train()
     progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False)
@@ -622,34 +613,12 @@ def train(
         attention_mask = (input_ids != tokenizer.vocab["<PAD>"]).to(device)
 
         # Use these logits for the LTN
-        embeddings = model.cls_outputs
         logits = model(input_ids, attention_mask=attention_mask)
         logits = logits.view(-1, logits.size(-1))
         targets = output_ids.view(-1)
 
-        # Compute LTN Losses
-        s_ltn_optimizer.zero_grad()
-        color_loss = lambda_ltn * compute_color_ltn_loss(embeddings, logits, 0, S)
-        color_loss.backward()
-        s_ltn_optimizer.step()
-        print(f"color loss: %.3f" % (color_loss.item()))
-
-        m_ltn_optimizer.zero_grad()
-        a_ltn_optimizer.zero_grad()
-        center_loss = lambda_ltn * compute_center_ltn_loss(embeddings, logits, 5, M, A)
-        center_loss.backward()
-        m_ltn_optimizer.step()
-        a_ltn_optimizer.step()
-        print(f"center loss: %.3f" % (center_loss.item()))
-
-        ltn_loss = color_loss + center_loss
-
         # This is where the LTN loss should be accounted for
         loss = nn.CrossEntropyLoss(ignore_index=tokenizer.vocab["<PAD>"])(logits, targets)
-
-        # Add the LTN term (with lambda)
-        if ltn_warmup and epoch >= ltn_apply_epoch:
-            loss = loss + ltn_loss
 
         progress_bar.set_postfix(loss=loss.item())
         loss.backward()
@@ -719,16 +688,15 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
     val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn)
     train_eval_loader = DataLoader(train_eval_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn)
-    model = CustomTransformer(vocab_size=len(tokenizer.vocab), use_2dpe=args.use_2dpe)
+    model = CombinedModel(vocab_size=len(tokenizer.vocab), use_2dpe=args.use_2dpe)
     print(f"LENGTH OF VOCABULARY: {len(tokenizer.vocab)}")
     if torch.cuda.device_count() > 1:
         print(f"Using {torch.cuda.device_count()} GPUs")
         model = nn.DataParallel(model)
     model = model.to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=5e-5)
-    s_ltn_optimizer = optim.Adam(S.parameters(), lr=0.001)
-    a_ltn_optimizer = optim.Adam(A.parameters(), lr=0.001)
-    m_ltn_optimizer = optim.Adam(M.parameters(), lr=0.001)
+    optimizer = optim.AdamW([
+        {'params': model.module.custom_trans.parameters(), 'lr': 5e-5}
+    ], lr=5e-5)
     scheduler = lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total_params_millions = total_params / 1_000_000
@@ -743,9 +711,6 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
             val_loader, 
             train_eval_loader, 
             optimizer, 
-            s_ltn_optimizer, 
-            a_ltn_optimizer,
-            m_ltn_optimizer,
             scheduler, 
             tokenizer, 
             device, 
