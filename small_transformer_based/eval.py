@@ -30,7 +30,7 @@ if torch.cuda.device_count() >= 1:
 
 # Load the model checkpoint (adjust the path as needed)
 print("##### LOADING THE MODEL... #####")
-checkpoint = torch.load("small_transformer_based/results_no_ltn/best/checkpoint_epoch90_iter3.pth")
+checkpoint = torch.load("small_transformer_based/results/best/checkpoint_epoch99_iter1.pth")
 
 # Extract the model's state_dict
 state_dict = checkpoint['model_state_dict']

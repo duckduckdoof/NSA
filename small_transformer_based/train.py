@@ -54,7 +54,7 @@ def extract_first_from_logits(tokenizer, logits, index, number, already_added=[]
     top_predictions = top_predictions[:number]
     return top_predictions
 
-def evaluate_true(model, tokenizer, device, tta=True, tta_epochs=1):
+def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
     model.eval()
     dataset_splits = {
         "train": "dataset/training",
@@ -108,7 +108,7 @@ def evaluate_true(model, tokenizer, device, tta=True, tta_epochs=1):
             print(f"Processing task {task_id} in '{split}' split.")
 
             if tta:
-                checkpoint_path = "small_transformer_based/results_no_ltn/best/checkpoint_epoch90_iter3.pth"
+                checkpoint_path = "small_transformer_based/results/best/checkpoint_epoch99_iter1.pth"
                 if not os.path.exists(checkpoint_path):
                     print(f"Checkpoint not found at {checkpoint_path}. Skipping TTA for task {task_id}.")
                     model_to_use = model
@@ -192,24 +192,28 @@ def evaluate_true(model, tokenizer, device, tta=True, tta_epochs=1):
             attention_mask = (input_ids != tokenizer.vocab.get("<PAD>", 0)).to(device)
             model_to_use.eval()
             with torch.no_grad():
-                _, logits = model_to_use(input_ids, attention_mask=attention_mask)
-                first_token = torch.argmax(logits[0][1]).item()
-                second_token = torch.argmax(logits[0][2]).item()
-                include_second = tokenizer.decode([second_token]) != "no_trans"
-                include_third = include_second and (tokenizer.decode([torch.argmax(logits[0][3]).item()]) != "no_trans")
-                top3_predictions = []
-                if not include_second and not include_third:
-                    to_consider = 5
-                    top3_predictions = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=0, number=to_consider, already_added=[])
-                if include_second:
-                    to_consider = 4
-                    preds_first = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=0, number=to_consider)
-                    preds_second = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=1, number=to_consider, already_added=preds_first)
-                    top3_predictions += preds_first + preds_second
-                if include_third:
-                    to_consider = 3
-                    preds_third = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=2, number=to_consider, already_added=top3_predictions)
-                    top3_predictions += preds_third
+                try:
+                    _, logits = model_to_use(input_ids, attention_mask=attention_mask)
+                    first_token = torch.argmax(logits[0][1]).item()
+                    second_token = torch.argmax(logits[0][2]).item()
+                    include_second = tokenizer.decode([second_token]) != "no_trans"
+                    include_third = include_second and (tokenizer.decode([torch.argmax(logits[0][3]).item()]) != "no_trans")
+                    top3_predictions = []
+                    if not include_second and not include_third:
+                        to_consider = 5
+                        top3_predictions = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=0, number=to_consider, already_added=[])
+                    if include_second:
+                        to_consider = 4
+                        preds_first = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=0, number=to_consider)
+                        preds_second = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=1, number=to_consider, already_added=preds_first)
+                        top3_predictions += preds_first + preds_second
+                    if include_third:
+                        to_consider = 3
+                        preds_third = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=2, number=to_consider, already_added=top3_predictions)
+                        top3_predictions += preds_third
+                except Exception as e:
+                    print("Exception in using model...")
+                    continue
             top3_predictions = [pred for pred in top3_predictions if pred != "no_trans"]
             top3_predictions = list(dict.fromkeys(top3_predictions))
             proposed_transformations_dict[split][task_id] = top3_predictions
@@ -429,7 +433,7 @@ class ColorPredicate(nn.Module):
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
         self.dense1 = nn.Linear(embed_dim, 32)
-        self.dense2 = nn.Linear(embed_dim, 1)
+        self.dense2 = nn.Linear(32, 1)
 
     def forward(self, x):
         x = self.dense1(x)
@@ -446,42 +450,6 @@ Implies = ltn.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
 Equiv = ltn.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
 Forall = ltn.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
 Exists = ltn.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
-
-# LTN predicates
-C = ltn.Predicate(model=ColorPredicate(N_EMBED))
-
-# LTN Functions
-# Used for calculating affinity for two conceptArc concepts: Color and Center
-def compute_color_ltn_loss(node_embeddings, logits, color_idx, s_predicate):
-    nodes = ltn.Variable("x", node_embeddings)
-    color_probs = torch.sigmoid(logits[:, color_idx])
-    proposes_color = ltn.Variable("proposes_color", color_probs.unsqueeze(1))
-
-    # Axiom: Forall x, IsTargetShape(x) <-> ProposesColor(x)
-    color_axiom_sat = Forall(
-        nodes,
-        Equiv(s_predicate(nodes), proposes_color)
-    )
-    return 1.0 - color_axiom_sat.value
-
-def compute_center_ltn_loss(node_embeddings, logits, trans_idx, m_predicate, a_predicate):
-    x_nodes = ltn.Variable("x", node_embeddings)
-    y_nodes = ltn.Variable("y", node_embeddings)
-
-    translate_probs = torch.sigmoid(logits[:, trans_idx])
-    N = translate_probs.size(0)
-    pairwise_probs = translate_probs.unsqueeze(1).expand(N, N).unsqueeze(2)
-    proposes_trans = ltn.Variable("proposes_trans", pairwise_probs)
-
-    # Axiom: Forall x, y: (IsMovable(x) AND IsAnchor(y) <-> ProposesTranslate(x, y))
-    center_axiom_sat = Forall(
-        (x_nodes, y_nodes),
-        Equiv(
-            And(m_predicate(x_nodes), a_predicate(y_nodes)),
-            proposes_trans
-        )
-    )
-    return 1.0 - center_axiom_sat.value
 
 # Transformer Model
 class CustomTransformer(nn.Module):
@@ -581,40 +549,6 @@ class CombinedModel(nn.Module):
         loss = 1.0 - color_axiom_sat.value
         return loss, logits
 
-class CombinedModel(nn.Module):
-    """
-    Class which includes both the custom transformer and the LTN.
-    
-    It's all got to be in a single pipeline.
-    """
-    def __init__(
-            self, 
-            vocab_size, 
-            n_positions=512, 
-            n_embd=N_EMBED, 
-            n_layer=8, 
-            n_head=8, 
-            dropout=8, 
-            use_2dpe=False, 
-            num_cls_tokens=3
-            ) -> None:
-        super(CombinedModel, self).__init__()
-        self.custom_trans = CustomTransformer(
-            vocab_size, 
-            n_positions, 
-            n_embd, 
-            n_layer, 
-            n_head, 
-            dropout, 
-            use_2dpe, 
-            num_cls_tokens
-        )
-        self.C = ltn.Predicate(model=ColorPredicate(N_EMBED))
-
-    def forward(self, input_ids, attention_mask=None):
-        trans_logits = self.custom_trans(input_ids, attention_mask)
-        return trans_logits
-
 # Dataset Implementation
 class CustomDataset(Dataset):
     def __init__(self, data, tokenizer, max_length=25600):
@@ -664,6 +598,8 @@ def train(
         save_iterations, 
         total_params_millions, 
         plot_dir,
+        ltn_epoch_start=20,
+        lambda_ltn_max=0.1
         ):
     model.train()
     progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False)
