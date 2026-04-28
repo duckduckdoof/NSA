@@ -429,7 +429,7 @@ class ColorPredicate(nn.Module):
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
         self.dense1 = nn.Linear(embed_dim, 32)
-        self.dense2 = nn.Linear(32, 1)
+        self.dense2 = nn.Linear(embed_dim, 1)
 
     def forward(self, x):
         x = self.dense1(x)
@@ -446,6 +446,42 @@ Implies = ltn.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
 Equiv = ltn.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
 Forall = ltn.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
 Exists = ltn.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
+
+# LTN predicates
+C = ltn.Predicate(model=ColorPredicate(N_EMBED))
+
+# LTN Functions
+# Used for calculating affinity for two conceptArc concepts: Color and Center
+def compute_color_ltn_loss(node_embeddings, logits, color_idx, s_predicate):
+    nodes = ltn.Variable("x", node_embeddings)
+    color_probs = torch.sigmoid(logits[:, color_idx])
+    proposes_color = ltn.Variable("proposes_color", color_probs.unsqueeze(1))
+
+    # Axiom: Forall x, IsTargetShape(x) <-> ProposesColor(x)
+    color_axiom_sat = Forall(
+        nodes,
+        Equiv(s_predicate(nodes), proposes_color)
+    )
+    return 1.0 - color_axiom_sat.value
+
+def compute_center_ltn_loss(node_embeddings, logits, trans_idx, m_predicate, a_predicate):
+    x_nodes = ltn.Variable("x", node_embeddings)
+    y_nodes = ltn.Variable("y", node_embeddings)
+
+    translate_probs = torch.sigmoid(logits[:, trans_idx])
+    N = translate_probs.size(0)
+    pairwise_probs = translate_probs.unsqueeze(1).expand(N, N).unsqueeze(2)
+    proposes_trans = ltn.Variable("proposes_trans", pairwise_probs)
+
+    # Axiom: Forall x, y: (IsMovable(x) AND IsAnchor(y) <-> ProposesTranslate(x, y))
+    center_axiom_sat = Forall(
+        (x_nodes, y_nodes),
+        Equiv(
+            And(m_predicate(x_nodes), a_predicate(y_nodes)),
+            proposes_trans
+        )
+    )
+    return 1.0 - center_axiom_sat.value
 
 # Transformer Model
 class CustomTransformer(nn.Module):
@@ -545,6 +581,40 @@ class CombinedModel(nn.Module):
         loss = 1.0 - color_axiom_sat.value
         return loss, logits
 
+class CombinedModel(nn.Module):
+    """
+    Class which includes both the custom transformer and the LTN.
+    
+    It's all got to be in a single pipeline.
+    """
+    def __init__(
+            self, 
+            vocab_size, 
+            n_positions=512, 
+            n_embd=N_EMBED, 
+            n_layer=8, 
+            n_head=8, 
+            dropout=8, 
+            use_2dpe=False, 
+            num_cls_tokens=3
+            ) -> None:
+        super(CombinedModel, self).__init__()
+        self.custom_trans = CustomTransformer(
+            vocab_size, 
+            n_positions, 
+            n_embd, 
+            n_layer, 
+            n_head, 
+            dropout, 
+            use_2dpe, 
+            num_cls_tokens
+        )
+        self.C = ltn.Predicate(model=ColorPredicate(N_EMBED))
+
+    def forward(self, input_ids, attention_mask=None):
+        trans_logits = self.custom_trans(input_ids, attention_mask)
+        return trans_logits
+
 # Dataset Implementation
 class CustomDataset(Dataset):
     def __init__(self, data, tokenizer, max_length=25600):
@@ -594,8 +664,6 @@ def train(
         save_iterations, 
         total_params_millions, 
         plot_dir,
-        ltn_epoch_start=20,
-        lambda_ltn_max=0.1
         ):
     model.train()
     progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False)
