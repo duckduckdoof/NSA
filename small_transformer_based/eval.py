@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 
 from small_transformer_based.train import (
     CustomTokenizer,
-    CustomTransformer,
+    CombinedModel,
     evaluate_true,
 )
 
@@ -21,7 +21,7 @@ tokenizer = CustomTokenizer()
 tokenizer.load_vocab("vocab.json")  # Load the vocabulary
 
 # Initialize the model with the correct vocab_size
-model = CustomTransformer(vocab_size=len(tokenizer.vocab))
+model = CombinedModel(vocab_size=len(tokenizer.vocab))
 
 # Conditional DataParallel wrapping
 if torch.cuda.device_count() >= 1:
@@ -30,7 +30,7 @@ if torch.cuda.device_count() >= 1:
 
 # Load the model checkpoint (adjust the path as needed)
 print("##### LOADING THE MODEL... #####")
-checkpoint = torch.load("small_transformer_based/results/25.3M/checkpoint_epoch0_iter2.pth")
+checkpoint = torch.load("small_transformer_based/results_no_ltn/best/checkpoint_epoch90_iter3.pth")
 
 # Extract the model's state_dict
 state_dict = checkpoint['model_state_dict']

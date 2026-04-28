@@ -1,0 +1,3409 @@
+RUNNING CODE WITH BATCH_SIZE 32
+Balancing transformations in the dataset...
+Balancing to 63 samples per transformation.
+Total balanced samples: 202
+Balanced dataset contains 202 samples
+Detected same dataset as before. Loading the vocabulary.
+LENGTH OF VOCABULARY: 46
+Using 3 GPUs
+Total number of parameters: 25.3M
+Starting Epoch 1/100
+Iteration 1:
+Top 3 Predictions: ['remove_node', 'flip', 'mirror_grid']
+True Output: no_trans
+Loss: 4.14426851272583
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch0_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'remove_node']
+True Output: no_trans
+Loss: 2.031562566757202
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch0_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: no_trans
+Loss: 1.277208685874939
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch0_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: rotate_duplicate
+Loss: 1.1655305624008179
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch0_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'no_trans']
+True Output: magnet
+Loss: 1.584310531616211
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch0_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'no_trans']
+True Output: crop
+Loss: 1.1725997924804688
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch0_iter6.pth
+
+ ====== EPOCH 0 SMALLEST LOSS: 1.1655305624008179 ======
+
+Starting Epoch 2/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'magnet', 'crop']
+True Output: rotate_duplicate
+Loss: 1.045996069908142
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch1_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 1.338492512702942
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch1_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: magnet
+Loss: 0.9440005421638489
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch1_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 1.236266016960144
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch1_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.046553134918213
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch1_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: no_trans
+Loss: 1.136325478553772
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch1_iter6.pth
+
+ ====== EPOCH 1 SMALLEST LOSS: 0.9440005421638489 ======
+
+Starting Epoch 3/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: magnet
+Loss: 0.9271685481071472
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch2_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'crop']
+True Output: magnet
+Loss: 1.1064493656158447
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch2_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'crop', 'fill']
+True Output: crop
+Loss: 0.9455757141113281
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch2_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: magnet
+Loss: 1.0895663499832153
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch2_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: no_trans
+Loss: 1.0899699926376343
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch2_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: magnet
+Loss: 1.1772176027297974
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch2_iter6.pth
+
+ ====== EPOCH 2 SMALLEST LOSS: 0.9271685481071472 ======
+
+Starting Epoch 4/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: magnet
+Loss: 1.1633989810943604
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch3_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: no_trans
+Loss: 0.8432982563972473
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch3_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: rotate_grid
+Loss: 0.9319965839385986
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch3_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: magnet
+Loss: 1.1203786134719849
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch3_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: fill
+Loss: 1.1020876169204712
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch3_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.0373921394348145
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch3_iter6.pth
+
+ ====== EPOCH 3 SMALLEST LOSS: 0.8432982563972473 ======
+
+Starting Epoch 5/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: magnet
+Loss: 0.8232536315917969
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch4_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: magnet
+Loss: 0.8605912327766418
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch4_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.0339035987854004
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch4_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: magnet
+Loss: 1.0052918195724487
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch4_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'magnet', 'crop']
+True Output: no_trans
+Loss: 0.9463497996330261
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch4_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: shift
+Loss: 1.341564416885376
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch4_iter6.pth
+
+ ====== EPOCH 4 SMALLEST LOSS: 0.8232536315917969 ======
+
+Starting Epoch 6/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.8554379343986511
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch5_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 1.0600630044937134
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch5_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.9824332594871521
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch5_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: magnet
+Loss: 1.11569344997406
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch5_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.051949143409729
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch5_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: no_trans
+Loss: 0.7466052770614624
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch5_iter6.pth
+
+ ====== EPOCH 5 SMALLEST LOSS: 0.7466052770614624 ======
+
+Starting Epoch 7/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8956904411315918
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch6_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.729010283946991
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch6_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 1.1714892387390137
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch6_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: remove_node
+Loss: 1.361223578453064
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch6_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.7826691269874573
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch6_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8698264956474304
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch6_iter6.pth
+
+ ====== EPOCH 6 SMALLEST LOSS: 0.729010283946991 ======
+
+Starting Epoch 8/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.835353672504425
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch7_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9379422664642334
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch7_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 1.1266909837722778
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch7_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 1.1639286279678345
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch7_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.6808715462684631
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch7_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: recolor
+Loss: 1.0405620336532593
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch7_iter6.pth
+
+ ====== EPOCH 7 SMALLEST LOSS: 0.6808715462684631 ======
+
+Starting Epoch 9/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8469882011413574
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch8_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: truncate
+Loss: 0.7414448857307434
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch8_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: truncate
+Loss: 1.0061407089233398
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch8_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.0942081212997437
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch8_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.2250423431396484
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch8_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.610400378704071
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch8_iter6.pth
+
+ ====== EPOCH 8 SMALLEST LOSS: 0.610400378704071 ======
+
+Starting Epoch 10/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.0365179777145386
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch9_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: duplicate
+Loss: 0.6981916427612305
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch9_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9762943387031555
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch9_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.9841566681861877
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch9_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'fill', 'rotate_grid']
+True Output: magnet
+Loss: 1.0269173383712769
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch9_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: magnet
+Loss: 1.0540863275527954
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch9_iter6.pth
+
+ ====== EPOCH 9 SMALLEST LOSS: 0.6981916427612305 ======
+
+Starting Epoch 11/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: magnet
+Loss: 0.893319308757782
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch10_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9578582644462585
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch10_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: connect
+Loss: 0.9818984866142273
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch10_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: fill
+Loss: 0.8085472583770752
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch10_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 1.138283371925354
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch10_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8085035085678101
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch10_iter6.pth
+
+ ====== EPOCH 10 SMALLEST LOSS: 0.8085035085678101 ======
+
+Starting Epoch 12/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8307291865348816
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch11_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8550505638122559
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch11_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: magnet
+Loss: 0.9962859749794006
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch11_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.8857471346855164
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch11_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'crop', 'fill']
+True Output: magnet
+Loss: 0.9175774455070496
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch11_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 1.1807821989059448
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch11_iter6.pth
+
+ ====== EPOCH 11 SMALLEST LOSS: 0.8307291865348816 ======
+
+Starting Epoch 13/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7122120261192322
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch12_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: crop
+Loss: 1.0470194816589355
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch12_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'crop', 'fill']
+True Output: magnet
+Loss: 1.0918105840682983
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch12_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9999362826347351
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch12_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8735457062721252
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch12_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.6367605328559875
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch12_iter6.pth
+
+ ====== EPOCH 12 SMALLEST LOSS: 0.6367605328559875 ======
+
+Starting Epoch 14/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9822129607200623
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch13_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'rotate_grid', 'magnet']
+True Output: crop
+Loss: 0.9300675392150879
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch13_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7863546013832092
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch13_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: fill
+Loss: 0.681834876537323
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch13_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: recolor
+Loss: 1.1055697202682495
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch13_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 0.9824053645133972
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch13_iter6.pth
+
+ ====== EPOCH 13 SMALLEST LOSS: 0.681834876537323 ======
+
+Starting Epoch 15/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.7995278239250183
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch14_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'crop', 'update_color']
+True Output: magnet
+Loss: 1.0694599151611328
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch14_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8651657104492188
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch14_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.9365186095237732
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch14_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: magnet
+Loss: 0.7908918857574463
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch14_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: magnet
+Loss: 0.9214906096458435
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch14_iter6.pth
+
+ ====== EPOCH 14 SMALLEST LOSS: 0.7908918857574463 ======
+
+Starting Epoch 16/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8470172882080078
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch15_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8311005234718323
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch15_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'fill', 'magnet']
+True Output: crop
+Loss: 0.9882747530937195
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch15_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.8484582304954529
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch15_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9673959612846375
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch15_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9258416891098022
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch15_iter6.pth
+
+ ====== EPOCH 15 SMALLEST LOSS: 0.8311005234718323 ======
+
+Starting Epoch 17/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.7471773028373718
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch16_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_duplicate']
+True Output: no_trans
+Loss: 0.7025830149650574
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch16_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9760732650756836
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch16_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.0673118829727173
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch16_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 1.0440820455551147
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch16_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8806674480438232
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch16_iter6.pth
+
+ ====== EPOCH 16 SMALLEST LOSS: 0.7025830149650574 ======
+
+Starting Epoch 18/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 1.129911184310913
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch17_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.8971428871154785
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch17_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9211897850036621
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch17_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.6722722053527832
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch17_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9045799374580383
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch17_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.6793692708015442
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch17_iter6.pth
+
+ ====== EPOCH 17 SMALLEST LOSS: 0.6722722053527832 ======
+
+Starting Epoch 19/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'magnet', 'crop']
+True Output: no_trans
+Loss: 0.9261344075202942
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch18_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.8275193572044373
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch18_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_duplicate']
+True Output: no_trans
+Loss: 0.9023427367210388
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch18_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7782933712005615
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch18_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: magnet
+Loss: 0.8088155388832092
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch18_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9635574221611023
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch18_iter6.pth
+
+ ====== EPOCH 18 SMALLEST LOSS: 0.7782933712005615 ======
+
+Starting Epoch 20/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'extract', 'fill']
+True Output: crop
+Loss: 0.6994905471801758
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch19_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'magnet']
+True Output: no_trans
+Loss: 0.9902021288871765
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch19_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 1.1472941637039185
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch19_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.6447587609291077
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch19_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7935689091682434
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch19_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.8807520866394043
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch19_iter6.pth
+
+ ====== EPOCH 19 SMALLEST LOSS: 0.6447587609291077 ======
+
+Starting Epoch 21/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'fill', 'rotate_grid']
+True Output: crop
+Loss: 0.756615161895752
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch20_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 0.9446566700935364
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch20_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 1.1945048570632935
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch20_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'crop', 'fill']
+True Output: magnet
+Loss: 0.6512279510498047
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch20_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: rotate_grid
+Loss: 0.8208135366439819
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch20_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.6591005921363831
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch20_iter6.pth
+
+ ====== EPOCH 20 SMALLEST LOSS: 0.6512279510498047 ======
+
+Starting Epoch 22/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7407507300376892
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch21_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7358452677726746
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch21_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_duplicate']
+True Output: no_trans
+Loss: 0.6922998428344727
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch21_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'fill', 'extract']
+True Output: crop
+Loss: 1.095177412033081
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch21_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 0.8359631896018982
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch21_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.9464536905288696
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch21_iter6.pth
+
+ ====== EPOCH 21 SMALLEST LOSS: 0.6922998428344727 ======
+
+Starting Epoch 23/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.7129459977149963
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch22_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_duplicate']
+True Output: no_trans
+Loss: 0.9142770171165466
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch22_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7787685990333557
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch22_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.826524555683136
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch22_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8803228139877319
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch22_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: remove_node
+Loss: 0.680690586566925
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch22_iter6.pth
+
+ ====== EPOCH 22 SMALLEST LOSS: 0.680690586566925 ======
+
+Starting Epoch 24/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'rotate_grid', 'fill']
+True Output: fill
+Loss: 0.8164957165718079
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch23_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8719186186790466
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch23_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.8018539547920227
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch23_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'fill', 'rotate_grid']
+True Output: crop
+Loss: 0.543036699295044
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch23_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7347193956375122
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch23_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'crop', 'fill']
+True Output: magnet
+Loss: 1.0185728073120117
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch23_iter6.pth
+
+ ====== EPOCH 23 SMALLEST LOSS: 0.543036699295044 ======
+
+Starting Epoch 25/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 0.7362571954727173
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch24_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'update_color']
+True Output: magnet
+Loss: 0.7185001969337463
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch24_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_duplicate']
+True Output: no_trans
+Loss: 0.8259322047233582
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch24_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.8348343968391418
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch24_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['upscale_grid', 'rotate_duplicate', 'magnet']
+True Output: upscale_grid
+Loss: 0.6019381284713745
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch24_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: truncate
+Loss: 0.8855875134468079
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch24_iter6.pth
+
+ ====== EPOCH 24 SMALLEST LOSS: 0.6019381284713745 ======
+
+Starting Epoch 26/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7126123905181885
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch25_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7402347922325134
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch25_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'crop', 'rotate_grid']
+True Output: fill
+Loss: 0.5920732021331787
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch25_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.7778558135032654
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch25_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7506985068321228
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch25_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: rotate_grid
+Loss: 1.1738598346710205
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch25_iter6.pth
+
+ ====== EPOCH 25 SMALLEST LOSS: 0.5920732021331787 ======
+
+Starting Epoch 27/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'no_trans', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9293217658996582
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch26_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['rotate_duplicate', 'magnet', 'upscale_grid']
+True Output: rotate_duplicate
+Loss: 0.8847663998603821
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch26_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.8111568093299866
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch26_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.5709745287895203
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch26_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.6557573676109314
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch26_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.584545373916626
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch26_iter6.pth
+
+ ====== EPOCH 26 SMALLEST LOSS: 0.5709745287895203 ======
+
+Starting Epoch 28/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'crop']
+True Output: magnet
+Loss: 1.027282476425171
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch27_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5853776931762695
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch27_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 0.6811049580574036
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch27_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.6565887331962585
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch27_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'upscale_grid', 'rotate_duplicate']
+True Output: no_trans
+Loss: 0.7724971771240234
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch27_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.6874160170555115
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch27_iter6.pth
+
+ ====== EPOCH 27 SMALLEST LOSS: 0.5853776931762695 ======
+
+Starting Epoch 29/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7329992055892944
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch28_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 0.76761794090271
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch28_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'fill', 'magnet']
+True Output: crop
+Loss: 0.5844663977622986
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch28_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['rotate_duplicate', 'no_trans', 'upscale_grid']
+True Output: upscale_grid
+Loss: 0.628186821937561
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch28_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'connect']
+True Output: crop
+Loss: 0.6724294424057007
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch28_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.9297268390655518
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch28_iter6.pth
+
+ ====== EPOCH 28 SMALLEST LOSS: 0.5844663977622986 ======
+
+Starting Epoch 30/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'fill', 'rotate_grid']
+True Output: crop
+Loss: 0.5570818185806274
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch29_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7777621150016785
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch29_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'fill', 'magnet']
+True Output: crop
+Loss: 0.8750824332237244
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch29_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.517378568649292
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch29_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.698176383972168
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch29_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.6164175868034363
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch29_iter6.pth
+
+ ====== EPOCH 29 SMALLEST LOSS: 0.517378568649292 ======
+
+Starting Epoch 31/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'magnet', 'fill']
+True Output: magnet
+Loss: 0.640158474445343
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch30_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.860681414604187
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch30_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.4461997151374817
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch30_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: truncate
+Loss: 0.7780460715293884
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch30_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: recolor
+Loss: 0.6878279447555542
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch30_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.5297451615333557
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch30_iter6.pth
+
+ ====== EPOCH 30 SMALLEST LOSS: 0.4461997151374817 ======
+
+Starting Epoch 32/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.4215314984321594
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch31_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'connect', 'magnet']
+True Output: connect
+Loss: 0.8957532048225403
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch31_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'rotate_grid', 'fill']
+True Output: crop
+Loss: 0.5407414436340332
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch31_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.6549342274665833
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch31_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7563681602478027
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch31_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 0.5387077331542969
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch31_iter6.pth
+
+ ====== EPOCH 31 SMALLEST LOSS: 0.4215314984321594 ======
+
+Starting Epoch 33/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.6598355174064636
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch32_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7951182126998901
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch32_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5063014030456543
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch32_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.5981678366661072
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch32_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.5559237003326416
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch32_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.5181106925010681
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch32_iter6.pth
+
+ ====== EPOCH 32 SMALLEST LOSS: 0.5063014030456543 ======
+
+Starting Epoch 34/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'magnet', 'flip']
+True Output: no_trans
+Loss: 0.778774619102478
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch33_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5698553919792175
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch33_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.5875768065452576
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch33_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5871806740760803
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch33_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.6701945066452026
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch33_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.6070308685302734
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch33_iter6.pth
+
+ ====== EPOCH 33 SMALLEST LOSS: 0.5698553919792175 ======
+
+Starting Epoch 35/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7332478165626526
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch34_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: rotate_grid
+Loss: 0.48643285036087036
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch34_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'fill', 'rotate_grid']
+True Output: fill
+Loss: 0.4942948520183563
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch34_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5380459427833557
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch34_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'move_node', 'magnet']
+True Output: no_trans
+Loss: 0.7199317812919617
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch34_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'rotate_grid', 'fill']
+True Output: crop
+Loss: 0.47995519638061523
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch34_iter6.pth
+
+ ====== EPOCH 34 SMALLEST LOSS: 0.47995519638061523 ======
+
+Starting Epoch 36/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.41820237040519714
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch35_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.7154301404953003
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch35_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'extend_node', 'rotate_grid']
+True Output: magnet
+Loss: 0.5349363088607788
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch35_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: crop
+Loss: 0.505591630935669
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch35_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.635286271572113
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch35_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'update_color', 'upscale_grid']
+True Output: magnet
+Loss: 0.5479950308799744
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch35_iter6.pth
+
+ ====== EPOCH 35 SMALLEST LOSS: 0.41820237040519714 ======
+
+Starting Epoch 37/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.6357161402702332
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch36_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.4710109829902649
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch36_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'fill', 'move_node']
+True Output: magnet
+Loss: 0.4644289016723633
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch36_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.548265814781189
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch36_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5026946067810059
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch36_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'rotate_grid', 'no_trans']
+True Output: crop
+Loss: 0.6260417699813843
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch36_iter6.pth
+
+ ====== EPOCH 36 SMALLEST LOSS: 0.4644289016723633 ======
+
+Starting Epoch 38/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'crop', 'connect']
+True Output: magnet
+Loss: 0.48698142170906067
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch37_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['move_node', 'no_trans', 'magnet']
+True Output: no_trans
+Loss: 0.6053293347358704
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch37_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'fill', 'magnet']
+True Output: crop
+Loss: 0.4593927264213562
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch37_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.4124528467655182
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch37_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.7412668466567993
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch37_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'fill', 'upscale_grid']
+True Output: crop
+Loss: 0.5489503741264343
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch37_iter6.pth
+
+ ====== EPOCH 37 SMALLEST LOSS: 0.4124528467655182 ======
+
+Starting Epoch 39/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.5294563174247742
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch38_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.43909013271331787
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch38_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'extract', 'rotate_grid']
+True Output: crop
+Loss: 0.4135586619377136
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch38_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'recolor']
+True Output: recolor
+Loss: 0.6427744626998901
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch38_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'update_color']
+True Output: magnet
+Loss: 0.5009083151817322
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch38_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5049582123756409
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch38_iter6.pth
+
+ ====== EPOCH 38 SMALLEST LOSS: 0.4135586619377136 ======
+
+Starting Epoch 40/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.5309504270553589
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch39_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.4107119143009186
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch39_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: rotate_grid
+Loss: 0.6019614934921265
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch39_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.5838313102722168
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch39_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'crop', 'update_color']
+True Output: magnet
+Loss: 0.4823170006275177
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch39_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.46855759620666504
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch39_iter6.pth
+
+ ====== EPOCH 39 SMALLEST LOSS: 0.4107119143009186 ======
+
+Starting Epoch 41/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'rotate_grid']
+True Output: crop
+Loss: 0.4980643391609192
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch40_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.5460158586502075
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch40_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.3805077075958252
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch40_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 0.6040287017822266
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch40_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['rotate_duplicate', 'no_trans', 'magnet']
+True Output: rotate_duplicate
+Loss: 0.4026867151260376
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch40_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'rotate_grid', 'remove_node']
+True Output: crop
+Loss: 0.5116375088691711
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch40_iter6.pth
+
+ ====== EPOCH 40 SMALLEST LOSS: 0.3805077075958252 ======
+
+Starting Epoch 42/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.35972243547439575
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch41_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.509096622467041
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch41_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: magnet
+Loss: 0.4695889949798584
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch41_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'flip']
+True Output: magnet
+Loss: 0.370898574590683
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch41_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'crop']
+True Output: magnet
+Loss: 0.5981031656265259
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch41_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'move_node_max']
+True Output: crop
+Loss: 0.6075412631034851
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch41_iter6.pth
+
+ ====== EPOCH 41 SMALLEST LOSS: 0.35972243547439575 ======
+
+Starting Epoch 43/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'connect', 'magnet']
+True Output: crop
+Loss: 0.48084479570388794
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch42_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['connect', 'no_trans', 'crop']
+True Output: no_trans
+Loss: 0.4817962944507599
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch42_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.2652492821216583
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch42_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'truncate']
+True Output: no_trans
+Loss: 0.3864416182041168
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch42_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'rotate_grid', 'extend_node']
+True Output: crop
+Loss: 0.48823636770248413
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch42_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.5452783703804016
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch42_iter6.pth
+
+ ====== EPOCH 42 SMALLEST LOSS: 0.2652492821216583 ======
+
+Starting Epoch 44/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'rotate_grid', 'no_trans']
+True Output: rotate_grid
+Loss: 0.3541337847709656
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch43_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'update_color', 'truncate']
+True Output: magnet
+Loss: 0.3714791238307953
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch43_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.4954375624656677
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch43_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.2770044207572937
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch43_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'flip', 'rotate_grid']
+True Output: no_trans
+Loss: 0.7090843319892883
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch43_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['rotate_grid', 'magnet', 'crop']
+True Output: rotate_grid
+Loss: 0.37310537695884705
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch43_iter6.pth
+
+ ====== EPOCH 43 SMALLEST LOSS: 0.2770044207572937 ======
+
+Starting Epoch 45/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.36116930842399597
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch44_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.4469493627548218
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch44_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'flip']
+True Output: no_trans
+Loss: 0.2206423431634903
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch44_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'rotate_grid', 'magnet']
+True Output: magnet
+Loss: 0.4577684700489044
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch44_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'rotate_grid', 'extend_node']
+True Output: crop
+Loss: 0.5694230794906616
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch44_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.5127483606338501
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch44_iter6.pth
+
+ ====== EPOCH 44 SMALLEST LOSS: 0.2206423431634903 ======
+
+Starting Epoch 46/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.3848048150539398
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch45_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'beam', 'magnet']
+True Output: no_trans
+Loss: 0.25729891657829285
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch45_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'fill', 'rotate_grid']
+True Output: magnet
+Loss: 0.44802209734916687
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch45_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['recolor', 'no_trans', 'rotate_grid']
+True Output: recolor
+Loss: 0.3228623867034912
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch45_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'rotate_grid', 'remove_node']
+True Output: crop
+Loss: 0.4351065754890442
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch45_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['fill', 'crop', 'remove_node']
+True Output: fill
+Loss: 0.5391064882278442
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch45_iter6.pth
+
+ ====== EPOCH 45 SMALLEST LOSS: 0.25729891657829285 ======
+
+Starting Epoch 47/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.3292950391769409
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch46_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'rotate_grid', 'extract']
+True Output: crop
+Loss: 0.30262747406959534
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch46_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.4604630172252655
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch46_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'no_trans', 'update_color']
+True Output: magnet
+Loss: 0.6455953121185303
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch46_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.44589927792549133
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch46_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'rotate_grid', 'magnet']
+True Output: crop
+Loss: 0.2907155156135559
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch46_iter6.pth
+
+ ====== EPOCH 46 SMALLEST LOSS: 0.2907155156135559 ======
+
+Starting Epoch 48/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'connect', 'rotate_grid']
+True Output: crop
+Loss: 0.47055912017822266
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch47_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.30081048607826233
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch47_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'no_trans', 'duplicate']
+True Output: no_trans
+Loss: 0.43062788248062134
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch47_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.3092977702617645
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch47_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: truncate
+Loss: 0.4516589641571045
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch47_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.3918914496898651
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch47_iter6.pth
+
+ ====== EPOCH 47 SMALLEST LOSS: 0.30081048607826233 ======
+
+Starting Epoch 49/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'fill', 'rotate_grid']
+True Output: crop
+Loss: 0.23750454187393188
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch48_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'fill']
+True Output: no_trans
+Loss: 0.29283857345581055
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch48_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.4044749438762665
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch48_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'truncate', 'crop']
+True Output: no_trans
+Loss: 0.47315338253974915
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch48_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'extend_node']
+True Output: magnet
+Loss: 0.37968385219573975
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch48_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.20855653285980225
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch48_iter6.pth
+
+ ====== EPOCH 48 SMALLEST LOSS: 0.20855653285980225 ======
+
+Starting Epoch 50/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.29959654808044434
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch49_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.32480818033218384
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch49_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.24367333948612213
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch49_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'extract', 'move_node_max']
+True Output: crop
+Loss: 0.3555288314819336
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch49_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.31525468826293945
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch49_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.44943735003471375
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch49_iter6.pth
+
+ ====== EPOCH 49 SMALLEST LOSS: 0.24367333948612213 ======
+
+Starting Epoch 51/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'rotate_grid', 'fill']
+True Output: crop
+Loss: 0.33018818497657776
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch50_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'extend_node']
+True Output: magnet
+Loss: 0.4170982837677002
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch50_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.36389267444610596
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch50_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'fill', 'magnet']
+True Output: crop
+Loss: 0.25214824080467224
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch50_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'extract']
+True Output: crop
+Loss: 0.279401570558548
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch50_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'update_color', 'crop']
+True Output: magnet
+Loss: 0.3302267789840698
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch50_iter6.pth
+
+ ====== EPOCH 50 SMALLEST LOSS: 0.25214824080467224 ======
+
+Starting Epoch 52/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.22341874241828918
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch51_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.18478281795978546
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch51_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'fill', 'move_node']
+True Output: magnet
+Loss: 0.3719925582408905
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch51_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'connect', 'mirror_grid']
+True Output: no_trans
+Loss: 0.3203122913837433
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch51_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'extend_node']
+True Output: magnet
+Loss: 0.2712157368659973
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch51_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'extract', 'rotate_grid']
+True Output: extract
+Loss: 0.6482917666435242
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch51_iter6.pth
+
+ ====== EPOCH 51 SMALLEST LOSS: 0.18478281795978546 ======
+
+Starting Epoch 53/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'extend_node', 'rotate_grid']
+True Output: crop
+Loss: 0.22445149719715118
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch52_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'extract']
+True Output: crop
+Loss: 0.35138657689094543
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch52_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.26806023716926575
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch52_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'rotate_grid', 'magnet']
+True Output: crop
+Loss: 0.3041899502277374
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch52_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'remove_node', 'rotate_grid']
+True Output: extract
+Loss: 0.311426043510437
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch52_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'flip', 'magnet']
+True Output: magnet
+Loss: 0.2954484820365906
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch52_iter6.pth
+
+ ====== EPOCH 52 SMALLEST LOSS: 0.22445149719715118 ======
+
+Starting Epoch 54/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'rotate_grid', 'truncate']
+True Output: crop
+Loss: 0.30714768171310425
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch53_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.3134179711341858
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch53_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['fill', 'crop', 'move_node_max']
+True Output: crop
+Loss: 0.3364710807800293
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch53_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.21027757227420807
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch53_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.25845658779144287
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch53_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.24185426533222198
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch53_iter6.pth
+
+ ====== EPOCH 53 SMALLEST LOSS: 0.21027757227420807 ======
+
+Starting Epoch 55/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.2450263351202011
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch54_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'rotate_grid', 'move_node_max']
+True Output: crop
+Loss: 0.4151833951473236
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch54_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'update_color', 'crop']
+True Output: magnet
+Loss: 0.2403150051832199
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch54_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'truncate']
+True Output: no_trans
+Loss: 0.4555661082267761
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch54_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.3881303369998932
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch54_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'move_node_max']
+True Output: crop
+Loss: 0.18938769400119781
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch54_iter6.pth
+
+ ====== EPOCH 54 SMALLEST LOSS: 0.18938769400119781 ======
+
+Starting Epoch 56/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'connect']
+True Output: crop
+Loss: 0.239244282245636
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch55_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'update_color', 'flip']
+True Output: magnet
+Loss: 0.3339390158653259
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch55_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.38581201434135437
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch55_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.38065052032470703
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch55_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.4651167392730713
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch55_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.6124752163887024
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch55_iter6.pth
+
+ ====== EPOCH 55 SMALLEST LOSS: 0.239244282245636 ======
+
+Starting Epoch 57/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'fill', 'no_trans']
+True Output: no_trans
+Loss: 0.34825852513313293
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch56_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'rotate_grid', 'rotate_duplicate']
+True Output: rotate_grid
+Loss: 0.30994951725006104
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch56_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.43457281589508057
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch56_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.45664942264556885
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch56_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'rotate_grid', 'fill']
+True Output: crop
+Loss: 0.5804393291473389
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch56_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: crop
+Loss: 0.47095435857772827
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch56_iter6.pth
+
+ ====== EPOCH 56 SMALLEST LOSS: 0.30994951725006104 ======
+
+Starting Epoch 58/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'connect', 'remove_node']
+True Output: crop
+Loss: 0.25600898265838623
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch57_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['fill', 'crop', 'extract']
+True Output: crop
+Loss: 0.3196941316127777
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch57_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.3706508278846741
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch57_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'rotate_grid', 'no_trans']
+True Output: rotate_grid
+Loss: 0.2770112156867981
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch57_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'extract', 'magnet']
+True Output: crop
+Loss: 0.21973386406898499
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch57_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.1779339611530304
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch57_iter6.pth
+
+ ====== EPOCH 57 SMALLEST LOSS: 0.1779339611530304 ======
+
+Starting Epoch 59/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.16610325872898102
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch58_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.24546955525875092
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch58_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.24093575775623322
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch58_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.31401824951171875
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch58_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'crop']
+True Output: no_trans
+Loss: 0.2498224973678589
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch58_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'connect', 'magnet']
+True Output: crop
+Loss: 0.3850969672203064
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch58_iter6.pth
+
+ ====== EPOCH 58 SMALLEST LOSS: 0.16610325872898102 ======
+
+Starting Epoch 60/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'beam']
+True Output: magnet
+Loss: 0.24247506260871887
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch59_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.3353046774864197
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch59_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.26100850105285645
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch59_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.15266399085521698
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch59_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'flip']
+True Output: no_trans
+Loss: 0.18456502258777618
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch59_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['fill', 'magnet', 'move_node']
+True Output: magnet
+Loss: 0.4175760746002197
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch59_iter6.pth
+
+ ====== EPOCH 59 SMALLEST LOSS: 0.15266399085521698 ======
+
+Starting Epoch 61/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.2731788456439972
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch60_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'update_color']
+True Output: magnet
+Loss: 0.31643998622894287
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch60_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'recolor', 'crop']
+True Output: no_trans
+Loss: 0.12101294845342636
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch60_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'update_color', 'fill']
+True Output: magnet
+Loss: 0.2255501002073288
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch60_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'update_color', 'fill']
+True Output: magnet
+Loss: 0.30370861291885376
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch60_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'update_color', 'flip']
+True Output: magnet
+Loss: 0.3585636019706726
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch60_iter6.pth
+
+ ====== EPOCH 60 SMALLEST LOSS: 0.12101294845342636 ======
+
+Starting Epoch 62/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.2323981374502182
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch61_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'connect']
+True Output: no_trans
+Loss: 0.1608637422323227
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch61_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['extend_node', 'crop', 'rotate_grid']
+True Output: extend_node
+Loss: 0.1838347464799881
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch61_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'truncate', 'crop']
+True Output: no_trans
+Loss: 0.1714070439338684
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch61_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['rotate_grid', 'crop', 'no_trans']
+True Output: rotate_grid
+Loss: 0.3395211100578308
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch61_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.19773441553115845
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch61_iter6.pth
+
+ ====== EPOCH 61 SMALLEST LOSS: 0.1608637422323227 ======
+
+Starting Epoch 63/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'move_node', 'update_color']
+True Output: no_trans
+Loss: 0.29919812083244324
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch62_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'move_node_max']
+True Output: crop
+Loss: 0.16186891496181488
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch62_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'fill', 'move_node']
+True Output: magnet
+Loss: 0.3414970934391022
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch62_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.15083396434783936
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch62_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 0.20669454336166382
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch62_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['fill', 'rotate_grid', 'extract']
+True Output: fill
+Loss: 0.2070344090461731
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch62_iter6.pth
+
+ ====== EPOCH 62 SMALLEST LOSS: 0.15083396434783936 ======
+
+Starting Epoch 64/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'beam']
+True Output: crop
+Loss: 0.24125638604164124
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch63_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.1259128898382187
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch63_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.18730708956718445
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch63_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.27885738015174866
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch63_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'extend_node']
+True Output: crop
+Loss: 0.13623185455799103
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch63_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.38975340127944946
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch63_iter6.pth
+
+ ====== EPOCH 63 SMALLEST LOSS: 0.1259128898382187 ======
+
+Starting Epoch 65/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.2388356477022171
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch64_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.18610145151615143
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch64_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.3346591293811798
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch64_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.2245887666940689
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch64_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.1227230429649353
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch64_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.19030968844890594
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch64_iter6.pth
+
+ ====== EPOCH 64 SMALLEST LOSS: 0.1227230429649353 ======
+
+Starting Epoch 66/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.1783507764339447
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch65_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.17862838506698608
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch65_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.18558578193187714
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch65_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.16696292161941528
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch65_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'crop', 'move_node_max']
+True Output: magnet
+Loss: 0.23511475324630737
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch65_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.19832251965999603
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch65_iter6.pth
+
+ ====== EPOCH 65 SMALLEST LOSS: 0.16696292161941528 ======
+
+Starting Epoch 67/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.22510550916194916
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch66_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.18209068477153778
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch66_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 0.24427860975265503
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch66_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.16023783385753632
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch66_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'truncate']
+True Output: no_trans
+Loss: 0.07780731469392776
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch66_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.17735818028450012
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch66_iter6.pth
+
+ ====== EPOCH 66 SMALLEST LOSS: 0.07780731469392776 ======
+
+Starting Epoch 68/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 0.3654223680496216
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch67_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'move_node_max']
+True Output: crop
+Loss: 0.21457014977931976
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch67_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: rotate_grid
+Loss: 0.13381049036979675
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch67_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'magnet', 'extend_node']
+True Output: crop
+Loss: 0.18217474222183228
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch67_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'magnet', 'beam']
+True Output: crop
+Loss: 0.10326994210481644
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch67_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'fill', 'crop']
+True Output: magnet
+Loss: 0.22638951241970062
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch67_iter6.pth
+
+ ====== EPOCH 67 SMALLEST LOSS: 0.10326994210481644 ======
+
+Starting Epoch 69/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'fill']
+True Output: crop
+Loss: 0.2584167420864105
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch68_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.14024673402309418
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch68_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.30138155817985535
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch68_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.20380039513111115
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch68_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.12793688476085663
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch68_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.12048820406198502
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch68_iter6.pth
+
+ ====== EPOCH 68 SMALLEST LOSS: 0.12048820406198502 ======
+
+Starting Epoch 70/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'move_node_max', 'magnet']
+True Output: crop
+Loss: 0.13696856796741486
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch69_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.10709438472986221
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch69_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'extend_node', 'arbitrary_duplicate']
+True Output: crop
+Loss: 0.1657702922821045
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch69_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.2636154294013977
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch69_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['beam', 'magnet', 'crop']
+True Output: beam
+Loss: 0.18785212934017181
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch69_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'extend_node', 'truncate']
+True Output: crop
+Loss: 0.14479796588420868
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch69_iter6.pth
+
+ ====== EPOCH 69 SMALLEST LOSS: 0.10709438472986221 ======
+
+Starting Epoch 71/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'fill']
+True Output: magnet
+Loss: 0.07942616194486618
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch70_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.1386120617389679
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch70_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.15054523944854736
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch70_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.26988932490348816
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch70_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['extract', 'fill', 'connect']
+True Output: extract
+Loss: 0.11774151772260666
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch70_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.16262777149677277
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch70_iter6.pth
+
+ ====== EPOCH 70 SMALLEST LOSS: 0.07942616194486618 ======
+
+Starting Epoch 72/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.0916467010974884
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch71_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'connect', 'magnet']
+True Output: crop
+Loss: 0.11986150592565536
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch71_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'update_color', 'magnet']
+True Output: crop
+Loss: 0.1296933889389038
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch71_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.1348777860403061
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch71_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.23929092288017273
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch71_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.14893728494644165
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch71_iter6.pth
+
+ ====== EPOCH 71 SMALLEST LOSS: 0.0916467010974884 ======
+
+Starting Epoch 73/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.15048561990261078
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch72_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.11745031923055649
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch72_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['update_color', 'magnet', 'no_trans']
+True Output: update_color
+Loss: 0.13132087886333466
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch72_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.13930049538612366
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch72_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.14956238865852356
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch72_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.20658661425113678
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch72_iter6.pth
+
+ ====== EPOCH 72 SMALLEST LOSS: 0.11745031923055649 ======
+
+Starting Epoch 74/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.10184725373983383
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch73_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.06763505935668945
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch73_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'fill', 'no_trans']
+True Output: magnet
+Loss: 0.1692665070295334
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch73_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'update_color', 'extend_node']
+True Output: magnet
+Loss: 0.15626727044582367
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch73_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.20348872244358063
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch73_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['rotate_grid', 'extend_node', 'truncate']
+True Output: rotate_grid
+Loss: 0.16515280306339264
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch73_iter6.pth
+
+ ====== EPOCH 73 SMALLEST LOSS: 0.06763505935668945 ======
+
+Starting Epoch 75/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 0.05412444472312927
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch74_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.12819352746009827
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch74_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.16305889189243317
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch74_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['upscale_grid', 'rotate_duplicate', 'arbitrary_duplicate']
+True Output: upscale_grid
+Loss: 0.21326254308223724
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch74_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.14690113067626953
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch74_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'update_color', 'magnet']
+True Output: crop
+Loss: 0.07526672631502151
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch74_iter6.pth
+
+ ====== EPOCH 74 SMALLEST LOSS: 0.05412444472312927 ======
+
+Starting Epoch 76/100
+Iteration 1:
+Top 3 Predictions: ['fill', 'move_node', 'crop']
+True Output: fill
+Loss: 0.1351565420627594
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch75_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'move_node_max', 'rotate_grid']
+True Output: crop
+Loss: 0.13997256755828857
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch75_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'update_color', 'fill']
+True Output: magnet
+Loss: 0.11907115578651428
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch75_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'fill', 'shift']
+True Output: crop
+Loss: 0.13534308969974518
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch75_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'update_color', 'fill']
+True Output: magnet
+Loss: 0.14973168075084686
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch75_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.1774822175502777
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch75_iter6.pth
+
+ ====== EPOCH 75 SMALLEST LOSS: 0.11907115578651428 ======
+
+Starting Epoch 77/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.1319335252046585
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch76_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'update_color', 'magnet']
+True Output: crop
+Loss: 0.1551656275987625
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch76_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'update_color', 'extract']
+True Output: crop
+Loss: 0.13772433996200562
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch76_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.10120120644569397
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch76_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.09359424561262131
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch76_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: no_trans
+Loss: 0.10781723260879517
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch76_iter6.pth
+
+ ====== EPOCH 76 SMALLEST LOSS: 0.09359424561262131 ======
+
+Starting Epoch 78/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.05785359442234039
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch77_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.06126441806554794
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch77_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.07669433951377869
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch77_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.2756725251674652
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch77_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['truncate', 'fill', 'magnet']
+True Output: truncate
+Loss: 0.24528451263904572
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch77_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'update_color', 'truncate']
+True Output: crop
+Loss: 0.0961785838007927
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch77_iter6.pth
+
+ ====== EPOCH 77 SMALLEST LOSS: 0.05785359442234039 ======
+
+Starting Epoch 79/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'no_trans']
+True Output: magnet
+Loss: 0.08262815326452255
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch78_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'update_color', 'no_trans']
+True Output: magnet
+Loss: 0.20949217677116394
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch78_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.09055779129266739
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch78_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.24050313234329224
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch78_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.1562524288892746
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch78_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.1467127948999405
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch78_iter6.pth
+
+ ====== EPOCH 78 SMALLEST LOSS: 0.08262815326452255 ======
+
+Starting Epoch 80/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'fill']
+True Output: magnet
+Loss: 0.21479582786560059
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch79_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.2222306728363037
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch79_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'move_node_max', 'duplicate']
+True Output: crop
+Loss: 0.09162954241037369
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch79_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'crop', 'update_color']
+True Output: magnet
+Loss: 0.18781054019927979
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch79_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.10288602858781815
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch79_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.1650891900062561
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch79_iter6.pth
+
+ ====== EPOCH 79 SMALLEST LOSS: 0.09162954241037369 ======
+
+Starting Epoch 81/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.19014081358909607
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch80_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.08612731099128723
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch80_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['magnet', 'rotate_grid', 'update_color']
+True Output: magnet
+Loss: 0.10249760001897812
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch80_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'magnet', 'update_color']
+True Output: no_trans
+Loss: 0.16202208399772644
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch80_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.13110363483428955
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch80_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'remove_node', 'connect']
+True Output: crop
+Loss: 0.245004341006279
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch80_iter6.pth
+
+ ====== EPOCH 80 SMALLEST LOSS: 0.08612731099128723 ======
+
+Starting Epoch 82/100
+Iteration 1:
+Top 3 Predictions: ['extract', 'duplicate', 'remove_node']
+True Output: extract
+Loss: 0.11339546740055084
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch81_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.15025120973587036
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch81_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'truncate']
+True Output: no_trans
+Loss: 0.11844029277563095
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch81_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.055664338171482086
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch81_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'crop', 'move_node_max']
+True Output: crop
+Loss: 0.18210861086845398
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch81_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.11542876064777374
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch81_iter6.pth
+
+ ====== EPOCH 81 SMALLEST LOSS: 0.055664338171482086 ======
+
+Starting Epoch 83/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.1703353375196457
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch82_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'flip', 'rotate_grid']
+True Output: no_trans
+Loss: 0.33682358264923096
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch82_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'update_color', 'remove_node']
+True Output: crop
+Loss: 0.19279971718788147
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch82_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'no_trans', 'shift']
+True Output: no_trans
+Loss: 0.16664735972881317
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch82_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'fill', 'move_node']
+True Output: fill
+Loss: 0.08123579621315002
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch82_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.181305393576622
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch82_iter6.pth
+
+ ====== EPOCH 82 SMALLEST LOSS: 0.08123579621315002 ======
+
+Starting Epoch 84/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.06450740993022919
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch83_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'rotate_grid']
+True Output: no_trans
+Loss: 0.14987051486968994
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch83_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'extract', 'crop']
+True Output: no_trans
+Loss: 0.1897876113653183
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch83_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.11634111404418945
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch83_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'update_color', 'extract']
+True Output: crop
+Loss: 0.16404516994953156
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch83_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'crop', 'update_color']
+True Output: magnet
+Loss: 0.07767364382743835
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch83_iter6.pth
+
+ ====== EPOCH 83 SMALLEST LOSS: 0.06450740993022919 ======
+
+Starting Epoch 85/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'update_color', 'magnet']
+True Output: crop
+Loss: 0.17996563017368317
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch84_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'magnet', 'move_node']
+True Output: no_trans
+Loss: 0.14562587440013885
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch84_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.12350776046514511
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch84_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.07514295727014542
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch84_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'update_color', 'truncate']
+True Output: magnet
+Loss: 0.25297415256500244
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch84_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'truncate']
+True Output: no_trans
+Loss: 0.028883038088679314
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch84_iter6.pth
+
+ ====== EPOCH 84 SMALLEST LOSS: 0.028883038088679314 ======
+
+Starting Epoch 86/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.12222102284431458
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch85_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.09355829656124115
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch85_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.13343727588653564
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch85_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'truncate']
+True Output: no_trans
+Loss: 0.16556735336780548
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch85_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.07806740701198578
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch85_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['fill', 'update_color', 'extract']
+True Output: fill
+Loss: 0.10468161851167679
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch85_iter6.pth
+
+ ====== EPOCH 85 SMALLEST LOSS: 0.07806740701198578 ======
+
+Starting Epoch 87/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'move_node_max', 'duplicate']
+True Output: crop
+Loss: 0.09868153184652328
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch86_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'extract']
+True Output: no_trans
+Loss: 0.09061751514673233
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch86_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.123412124812603
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch86_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'update_color', 'crop']
+True Output: magnet
+Loss: 0.17251135408878326
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch86_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.03919538855552673
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch86_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.2909057140350342
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch86_iter6.pth
+
+ ====== EPOCH 86 SMALLEST LOSS: 0.03919538855552673 ======
+
+Starting Epoch 88/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'crop']
+True Output: magnet
+Loss: 0.04800475388765335
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch87_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.08544457703828812
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch87_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.05982277914881706
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch87_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'crop', 'update_color']
+True Output: magnet
+Loss: 0.2578849196434021
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch87_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'magnet', 'move_node']
+True Output: no_trans
+Loss: 0.12090941518545151
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch87_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.21346217393875122
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch87_iter6.pth
+
+ ====== EPOCH 87 SMALLEST LOSS: 0.04800475388765335 ======
+
+Starting Epoch 89/100
+Iteration 1:
+Top 3 Predictions: ['extract', 'remove_node', 'duplicate']
+True Output: extract
+Loss: 0.15372158586978912
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch88_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'magnet']
+True Output: no_trans
+Loss: 0.13101385533809662
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch88_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'update_color', 'extract']
+True Output: crop
+Loss: 0.05927309766411781
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch88_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'update_color', 'crop']
+True Output: magnet
+Loss: 0.1556713730096817
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch88_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'connect', 'update_color']
+True Output: crop
+Loss: 0.07025499641895294
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch88_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['fill', 'update_color', 'rotate_grid']
+True Output: fill
+Loss: 0.09726977348327637
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch88_iter6.pth
+
+ ====== EPOCH 88 SMALLEST LOSS: 0.05927309766411781 ======
+
+Starting Epoch 90/100
+Iteration 1:
+Top 3 Predictions: ['crop', 'move_node_max', 'update_color']
+True Output: crop
+Loss: 0.05900895223021507
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch89_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'magnet', 'no_trans']
+True Output: crop
+Loss: 0.14700835943222046
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch89_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'move_node_max', 'magnet']
+True Output: crop
+Loss: 0.14473117887973785
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch89_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.09180014580488205
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch89_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.07694049924612045
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch89_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'move_node_max', 'update_color']
+True Output: crop
+Loss: 0.11230190098285675
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch89_iter6.pth
+
+ ====== EPOCH 89 SMALLEST LOSS: 0.05900895223021507 ======
+
+Starting Epoch 91/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: rotate_grid
+Loss: 0.138797789812088
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch90_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'move_node_max', 'update_color']
+True Output: crop
+Loss: 0.08669369667768478
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch90_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.024402311071753502
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch90_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.11750605702400208
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch90_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.24829068779945374
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch90_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.07368350028991699
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch90_iter6.pth
+
+ ====== EPOCH 90 SMALLEST LOSS: 0.024402311071753502 ======
+
+Starting Epoch 92/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.10837043076753616
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch91_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['arbitrary_duplicate', 'upscale_grid', 'update_color']
+True Output: arbitrary_duplicate
+Loss: 0.09449591487646103
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch91_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'magnet']
+True Output: no_trans
+Loss: 0.08015218377113342
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch91_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'magnet']
+True Output: no_trans
+Loss: 0.13698464632034302
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch91_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.12376569956541061
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch91_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.1255778670310974
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch91_iter6.pth
+
+ ====== EPOCH 91 SMALLEST LOSS: 0.08015218377113342 ======
+
+Starting Epoch 93/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.1658531129360199
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch92_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'crop', 'rotate_grid']
+True Output: no_trans
+Loss: 0.06711658835411072
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch92_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['crop', 'move_node_max', 'magnet']
+True Output: crop
+Loss: 0.10763181000947952
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch92_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.05214857682585716
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch92_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.20093201100826263
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch92_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.04060932248830795
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch92_iter6.pth
+
+ ====== EPOCH 92 SMALLEST LOSS: 0.04060932248830795 ======
+
+Starting Epoch 94/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.14985035359859467
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch93_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'update_color', 'truncate']
+True Output: no_trans
+Loss: 0.1579720675945282
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch93_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['rotate_grid', 'no_trans', 'rotate_duplicate']
+True Output: rotate_grid
+Loss: 0.07169470191001892
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch93_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'truncate']
+True Output: no_trans
+Loss: 0.10194125771522522
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch93_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.1151576042175293
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch93_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'update_color', 'flip']
+True Output: magnet
+Loss: 0.05501241609454155
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch93_iter6.pth
+
+ ====== EPOCH 93 SMALLEST LOSS: 0.05501241609454155 ======
+
+Starting Epoch 95/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'update_color', 'magnet']
+True Output: no_trans
+Loss: 0.07501619309186935
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch94_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'update_color', 'magnet']
+True Output: crop
+Loss: 0.14018145203590393
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch94_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'crop', 'update_color']
+True Output: no_trans
+Loss: 0.0251801535487175
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch94_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.201564222574234
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch94_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.06783707439899445
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch94_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['no_trans', 'magnet', 'flip']
+True Output: no_trans
+Loss: 0.09363199770450592
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch94_iter6.pth
+
+ ====== EPOCH 94 SMALLEST LOSS: 0.0251801535487175 ======
+
+Starting Epoch 96/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.027256885543465614
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch95_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'update_color', 'move_node_max']
+True Output: crop
+Loss: 0.07833680510520935
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch95_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['rotate_duplicate', 'duplicate', 'rotate_grid']
+True Output: rotate_duplicate
+Loss: 0.19554048776626587
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch95_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.18475687503814697
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch95_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['fill', 'crop', 'update_color']
+True Output: fill
+Loss: 0.08772755414247513
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch95_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'magnet', 'update_color']
+True Output: crop
+Loss: 0.023205874487757683
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch95_iter6.pth
+
+ ====== EPOCH 95 SMALLEST LOSS: 0.023205874487757683 ======
+
+Starting Epoch 97/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'magnet', 'update_color']
+True Output: no_trans
+Loss: 0.11087613552808762
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch96_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.037018898874521255
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch96_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'magnet']
+True Output: rotate_grid
+Loss: 0.17014844715595245
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch96_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'magnet', 'move_node']
+True Output: no_trans
+Loss: 0.039876118302345276
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch96_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.21873249113559723
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch96_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['crop', 'remove_node', 'update_color']
+True Output: crop
+Loss: 0.019137641414999962
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch96_iter6.pth
+
+ ====== EPOCH 96 SMALLEST LOSS: 0.019137641414999962 ======
+
+Starting Epoch 98/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.16912242770195007
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch97_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['crop', 'extend_node', 'update_color']
+True Output: crop
+Loss: 0.09554509073495865
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch97_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'update_color']
+True Output: no_trans
+Loss: 0.12763431668281555
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch97_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['crop', 'move_node_max', 'update_color']
+True Output: crop
+Loss: 0.05492020025849342
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch97_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.0547734797000885
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch97_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.13741452991962433
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch97_iter6.pth
+
+ ====== EPOCH 97 SMALLEST LOSS: 0.0547734797000885 ======
+
+Starting Epoch 99/100
+Iteration 1:
+Top 3 Predictions: ['magnet', 'update_color', 'rotate_grid']
+True Output: magnet
+Loss: 0.12184682488441467
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch98_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['magnet', 'update_color', 'crop']
+True Output: magnet
+Loss: 0.07626954466104507
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch98_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['no_trans', 'update_color', 'truncate']
+True Output: no_trans
+Loss: 0.04092775285243988
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch98_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['no_trans', 'update_color', 'rotate_grid']
+True Output: no_trans
+Loss: 0.0653534084558487
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch98_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['magnet', 'update_color', 'crop']
+True Output: magnet
+Loss: 0.21301287412643433
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch98_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'update_color', 'fill']
+True Output: magnet
+Loss: 0.019253848120570183
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch98_iter6.pth
+
+ ====== EPOCH 98 SMALLEST LOSS: 0.019253848120570183 ======
+
+Starting Epoch 100/100
+Iteration 1:
+Top 3 Predictions: ['no_trans', 'update_color', 'crop']
+True Output: no_trans
+Loss: 0.009600166231393814
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch99_iter1.pth
+Iteration 2:
+Top 3 Predictions: ['no_trans', 'rotate_grid', 'flip']
+True Output: no_trans
+Loss: 0.12729212641716003
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch99_iter2.pth
+Iteration 3:
+Top 3 Predictions: ['extend_node', 'crop', 'fill']
+True Output: extend_node
+Loss: 0.12851668894290924
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch99_iter3.pth
+Iteration 4:
+Top 3 Predictions: ['magnet', 'crop', 'update_color']
+True Output: magnet
+Loss: 0.02546175941824913
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch99_iter4.pth
+Iteration 5:
+Top 3 Predictions: ['crop', 'update_color', 'mirror_grid']
+True Output: crop
+Loss: 0.26662370562553406
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch99_iter5.pth
+Iteration 6:
+Top 3 Predictions: ['magnet', 'crop', 'update_color']
+True Output: magnet
+Loss: 0.06406588107347488
+Model checkpoint saved at small_transformer_based/results/25.3M/checkpoint_epoch99_iter6.pth
+
+ ====== EPOCH 99 SMALLEST LOSS: 0.009600166231393814 ======
+

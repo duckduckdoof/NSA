@@ -1,2 +1,8 @@
 .vscode/
+__pycache__/
 */__pycache__/
+
+final_data8/
+
+small_transformer_based/results
+small_transformer_based/results_no_ltn

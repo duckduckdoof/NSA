@@ -2,6 +2,7 @@ import os
 import re
 import math
 import json
+from typing import Any
 import torch
 import random
 import hashlib
@@ -24,10 +25,12 @@ from task import Task
 from shutil import rmtree
 
 # LTNs
-from LTNtorch import ltn
+import ltn
 
 # Constants
 N_EMBED = 512
+COLOR_IDX = 18
+ENABLE_LTN = True
 
 class SinusoidalPositionalEncoding(nn.Module):
     def __init__(self, n_embd, max_len=6500):
@@ -45,7 +48,7 @@ class SinusoidalPositionalEncoding(nn.Module):
 
 # Helper Functions
 def extract_first_from_logits(tokenizer, logits, index, number, already_added=[]):
-    first_predictions = logits[0][index].topk(30, dim=-1)
+    first_predictions = logits[index].topk(30, dim=-1)
     corresponding_tokens = [tokenizer.decode([int(token_id.cpu().numpy())]).strip() for token_id in first_predictions.indices]
     top_predictions = [x for x in corresponding_tokens if x not in already_added + ["no_trans"]]
     top_predictions = top_predictions[:number]
@@ -105,7 +108,7 @@ def evaluate_true(model, tokenizer, device, tta=True, tta_epochs=1):
             print(f"Processing task {task_id} in '{split}' split.")
 
             if tta:
-                checkpoint_path = "small_transformer_based/results_mine/25.3M/checkpoint_epoch27_iter874.pth"
+                checkpoint_path = "small_transformer_based/results_no_ltn/best/checkpoint_epoch90_iter3.pth"
                 if not os.path.exists(checkpoint_path):
                     print(f"Checkpoint not found at {checkpoint_path}. Skipping TTA for task {task_id}.")
                     model_to_use = model
@@ -189,7 +192,7 @@ def evaluate_true(model, tokenizer, device, tta=True, tta_epochs=1):
             attention_mask = (input_ids != tokenizer.vocab.get("<PAD>", 0)).to(device)
             model_to_use.eval()
             with torch.no_grad():
-                logits = model_to_use(input_ids, attention_mask=attention_mask)
+                _, logits = model_to_use(input_ids, attention_mask=attention_mask)
                 first_token = torch.argmax(logits[0][1]).item()
                 second_token = torch.argmax(logits[0][2]).item()
                 include_second = tokenizer.decode([second_token]) != "no_trans"
@@ -257,7 +260,7 @@ def save_model_checkpoint(model, optimizer, epoch, iteration, save_path):
     checkpoint = {
         'epoch': epoch,
         'iteration': iteration,
-        'model_state_dict': model.state_dict(),
+        'model_state_dict': model.module.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
     }
     torch.save(checkpoint, save_path)
@@ -420,102 +423,29 @@ class CustomTokenizer:
             self.inv_vocab = {v: k for k, v in self.vocab.items()}
 
 # LTN Implementations
-class Shape(nn.Module):
-    """
-    LTN implementation which feeds its loss directly into the loss of the transformer.
-
-    This class is for the Shape predicate.
-    """
-    def __init__(self, embed_dim):
-        super(Shape, self).__init__()
+class ColorPredicate(nn.Module):
+    def __init__(self, embed_dim) -> None:
+        super(ColorPredicate, self).__init__()
         self.relu = nn.ReLU()
+        self.sigmoid = nn.Sigmoid()
         self.dense1 = nn.Linear(embed_dim, 32)
         self.dense2 = nn.Linear(32, 1)
 
     def forward(self, x):
-        x = self.relu(self.dense1)
-        x = self.relu(self.dense2)
-        return x
-
-class Anchor(nn.Module):
-    """
-    LTN implementation which feeds its loss directly into the loss of the transformer.
-
-    This class is for the Anchor predicate.
-    """
-    def __init__(self, embed_dim):
-        super(Anchor, self).__init__()
-        self.relu = nn.ReLU()
-        self.dense1 = nn.Linear(embed_dim, 32)
-        self.dense2 = nn.Linear(32, 1)
-
-    def forward(self, x):
-        x = self.relu(self.dense1)
-        x = self.relu(self.dense2)
-        return x
-
-class Movable(nn.Module):
-    """
-    LTN implementation which feeds its loss directly into the loss of the transformer.
-
-    This class is for the Movable predicate.
-    """
-    def __init__(self, embed_dim):
-        super(Movable, self).__init__()
-        self.relu = nn.ReLU()
-        self.dense1 = nn.Linear(embed_dim, 32)
-        self.dense2 = nn.Linear(32, 1)
-
-    def forward(self, x):
-        x = self.relu(self.dense1)
-        x = self.relu(self.dense2)
-        return x
+        x = self.dense1(x)
+        x = self.relu(x)
+        x = self.dense2(x)
+        out = self.sigmoid(x)
+        return out
 
 # LTN Connectives
-Not = ltn.core.Connective(ltn.fuzzy_ops.NotStandard())
-And = ltn.core.Connective(ltn.fuzzy_ops.AndProd())
-Or = ltn.core.Connective(ltn.fuzzy_ops.OrProbSum())
-Implies = ltn.core.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
-Equiv = ltn.core.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
-Forall = ltn.core.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
-Exists = ltn.core.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
-
-S = ltn.core.Predicate(Shape(N_EMBED))
-A = ltn.core.Predicate(Anchor(N_EMBED))
-M = ltn.core.Predicate(Movable(N_EMBED))
-
-# LTN Functions
-# Used for calculating affinity for two conceptArc concepts: Color and Center
-def compute_color_ltn_loss(node_embeddings, logits, color_idx, s_predicate):
-    nodes = ltn.core.Variable("x", node_embeddings)
-    color_probs = torch.sigmoid(logits[:, color_idx])
-    proposes_color = ltn.core.Variable("proposes_color", color_probs.unsqueeze(1))
-
-    # Axiom: Forall x, IsTargetShape(x) <-> ProposesColor(x)
-    color_axiom_sat = Forall(
-        nodes,
-        Equiv(s_predicate(nodes), proposes_color)
-    )
-    return 1.0 - color_axiom_sat
-
-def compute_center_ltn_loss(node_embeddings, logits, trans_idx, m_predicate, a_predicate):
-    x_nodes = ltn.core.Variable("x", node_embeddings)
-    y_nodes = ltn.core.Variable("y", node_embeddings)
-
-    translate_probs = torch.sigmoid(logits[:, trans_idx])
-    N = translate_probs.size(0)
-    pariwise_probs = translate_probs.unsqueeze(1).expand(N, N).unsqueeze(2)
-    proposes_trans = ltn.core.Variable("proposes_trans", pariwise_probs)
-
-    # Axiom: Forall x, y: (IsMovable(x) AND IsAnchor(y) <-> ProposesTranslate(x, y))
-    center_axiom_sat = Forall(
-        (x_nodes, y_nodes),
-        Equiv(
-            And(m_predicate(x_nodes), a_predicate(y_nodes)),
-            proposes_trans
-        )
-    )
-    return 1.0 - center_axiom_sat
+Not = ltn.Connective(ltn.fuzzy_ops.NotStandard())
+And = ltn.Connective(ltn.fuzzy_ops.AndProd())
+Or = ltn.Connective(ltn.fuzzy_ops.OrProbSum())
+Implies = ltn.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
+Equiv = ltn.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
+Forall = ltn.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
+Exists = ltn.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
 
 # Transformer Model
 class CustomTransformer(nn.Module):
@@ -537,7 +467,6 @@ class CustomTransformer(nn.Module):
             for _ in range(n_layer)
         ])
         self.fc_out = nn.Linear(n_embd, vocab_size)
-        self.cls_outputs = None
 
     def forward(self, input_ids, attention_mask=None):
         x = self.embedding(input_ids)
@@ -551,9 +480,70 @@ class CustomTransformer(nn.Module):
             attention_mask = torch.cat((cls_attention_mask, attention_mask), dim=1)
         for block in self.transformer_blocks:
             x = block(x, src_key_padding_mask=(~attention_mask.bool()) if attention_mask is not None else None)
-        self.cls_outputs = x[:, :self.num_cls_tokens, :]
-        logits = self.fc_out(self.cls_outputs)
-        return logits
+        cls_outputs = x[:, :self.num_cls_tokens, :]
+        logits = self.fc_out(cls_outputs)
+
+        return cls_outputs, logits
+
+class CombinedModel(nn.Module):
+    """
+    Class which includes both the custom transformer and the LTN.
+    
+    It's all got to be in a single pipeline.
+    """
+    def __init__(
+            self, 
+            vocab_size, 
+            n_positions=512, 
+            n_embd=N_EMBED, 
+            n_layer=8, 
+            n_head=8, 
+            dropout=0., 
+            use_2dpe=False, 
+            num_cls_tokens=3
+            ) -> None:
+        super(CombinedModel, self).__init__()
+        self.custom_trans = CustomTransformer(
+            vocab_size, 
+            n_positions, 
+            n_embd, 
+            n_layer, 
+            n_head, 
+            dropout, 
+            use_2dpe, 
+            num_cls_tokens
+        )
+        self.C = ltn.Predicate(model=ColorPredicate(N_EMBED))
+
+    def forward(self, input_ids, attention_mask=None):
+        trans_outputs, trans_logits = self.custom_trans(input_ids, attention_mask)
+        # Each batch (per gpu card) is [~10, 3, 512] for outputs
+        # Each batch (per gpu card) is [~10, 3, 46 (vocab-len)] for logits
+        # You will see this 3 times, for each 3 cards
+
+        # Now for the ltn
+        # We need to "mash" the batch + cls dimensions together for the variable
+        # contiguous here is important... otherwise we can't view right
+        trans_outputs = trans_outputs.contiguous()
+        trans_outputs = trans_outputs.view(-1, trans_outputs.size(-1))
+        # outputs now have [b x cls, embd_dim] shape
+        nodes = ltn.Variable("x", trans_outputs, add_batch_dim=True)
+        # We now have "affinities" given the predicate for the transformer output
+
+        logits = trans_logits.view(-1, trans_logits.size(-1))
+
+        # LTN probs
+        color_probs = torch.sigmoid(logits[:, COLOR_IDX])
+
+        proposes_color = ltn.Variable("proposes_color", color_probs, add_batch_dim=False)
+
+        # color axiom
+        color_axiom_sat = Forall(
+            nodes,
+            Equiv(self.C(nodes), proposes_color)
+        )
+        loss = 1.0 - color_axiom_sat.value
+        return loss, logits
 
 # Dataset Implementation
 class CustomDataset(Dataset):
@@ -596,23 +586,22 @@ def train(
         val_loader, 
         train_eval_loader, 
         optimizer, 
-        s_ltn_optimizer,
-        a_ltn_optimizer,
-        m_ltn_optimizer,
         scheduler, 
         tokenizer, 
         device, 
         epoch, 
+        total_epochs,
         save_iterations, 
         total_params_millions, 
         plot_dir,
-        lambda_ltn=0.001,
-        ltn_warmup=True,
-        ltn_apply_epoch=10
+        ltn_epoch_start=20,
+        lambda_ltn_max=0.1
         ):
     model.train()
     progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False)
     batch_losses = 0
+    lambda_ltn = 0.0
+    least_loss = 100.0
     for batch_idx, (input_ids, output_ids) in enumerate(progress_bar):
         input_ids = input_ids.to(device)
         output_ids = output_ids.to(device)
@@ -622,34 +611,29 @@ def train(
         attention_mask = (input_ids != tokenizer.vocab["<PAD>"]).to(device)
 
         # Use these logits for the LTN
-        embeddings = model.cls_outputs
-        logits = model(input_ids, attention_mask=attention_mask)
-        logits = logits.view(-1, logits.size(-1))
+        ltn_loss, logits = model(input_ids, attention_mask=attention_mask)
+
+        # This ends up being [~96, 46]
+        # It essentially flattens the 11x3 into one dimension, keeping the last dim (the vocab logits)
+        # the color index, referencing vocab.json, is index 18
         targets = output_ids.view(-1)
-
-        # Compute LTN Losses
-        s_ltn_optimizer.zero_grad()
-        color_loss = lambda_ltn * compute_color_ltn_loss(embeddings, logits, 0, S)
-        color_loss.backward()
-        s_ltn_optimizer.step()
-        print(f"color loss: %.3f" % (color_loss.item()))
-
-        m_ltn_optimizer.zero_grad()
-        a_ltn_optimizer.zero_grad()
-        center_loss = lambda_ltn * compute_center_ltn_loss(embeddings, logits, 5, M, A)
-        center_loss.backward()
-        m_ltn_optimizer.step()
-        a_ltn_optimizer.step()
-        print(f"center loss: %.3f" % (center_loss.item()))
-
-        ltn_loss = color_loss + center_loss
+        # This contains a list (on the batch dimension) of the correct functional (ignoring PAD)
 
         # This is where the LTN loss should be accounted for
         loss = nn.CrossEntropyLoss(ignore_index=tokenizer.vocab["<PAD>"])(logits, targets)
 
-        # Add the LTN term (with lambda)
-        if ltn_warmup and epoch >= ltn_apply_epoch:
-            loss = loss + ltn_loss
+        # Factor in LTN losses, if applicable
+        # AT THIS POINT --> we have one value for loss, and b values for ltn losses (b=batch dim).
+        # We need to factor in the avg loss, then apply lambda_ltn.
+        avg_ltn_loss = torch.mean(ltn_loss)
+        if ENABLE_LTN and epoch >= ltn_epoch_start:
+            lambda_ltn = (epoch/total_epochs) * lambda_ltn_max
+
+        # Apply loss term from LTN (FINALLY)
+        loss = loss + (lambda_ltn * avg_ltn_loss)
+
+        if loss < least_loss:
+            least_loss = loss
 
         progress_bar.set_postfix(loss=loss.item())
         loss.backward()
@@ -671,7 +655,10 @@ def train(
             save_model_checkpoint(model, optimizer, epoch, batch_idx + 1, checkpoint_path)
         if (batch_idx + 1) % save_iterations == 0:
             batch_losses = 0
-    scheduler.step()
+    # scheduler.step()
+    print()
+    print(f" ====== EPOCH {epoch} SMALLEST LOSS: {least_loss} ======")
+    print()
 
 # Main Function
 def main(data_path, epochs=1, batch_size=32, save_iterations=100):
@@ -719,21 +706,21 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
     val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn)
     train_eval_loader = DataLoader(train_eval_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn)
-    model = CustomTransformer(vocab_size=len(tokenizer.vocab), use_2dpe=args.use_2dpe)
+    model = CombinedModel(vocab_size=len(tokenizer.vocab), use_2dpe=args.use_2dpe)
     print(f"LENGTH OF VOCABULARY: {len(tokenizer.vocab)}")
     if torch.cuda.device_count() > 1:
         print(f"Using {torch.cuda.device_count()} GPUs")
         model = nn.DataParallel(model)
     model = model.to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=5e-5)
-    s_ltn_optimizer = optim.Adam(S.parameters(), lr=0.001)
-    a_ltn_optimizer = optim.Adam(A.parameters(), lr=0.001)
-    m_ltn_optimizer = optim.Adam(M.parameters(), lr=0.001)
+    optimizer = optim.AdamW([
+        {'params': model.module.custom_trans.parameters(), 'lr': 5e-5},
+        {'params': model.module.C.model.parameters(), 'lr': 0.001}
+    ], lr=5e-5)
     scheduler = lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total_params_millions = total_params / 1_000_000
     print(f"Total number of parameters: {total_params_millions:.1f}M")
-    plot_dir = f"small_transformer_based/results/{total_params_millions:.1f}M"
+    plot_dir = f"small_transformer_based/results_no_ltn/{total_params_millions:.1f}M"
     os.makedirs(plot_dir, exist_ok=True)
     for epoch in range(epochs):
         print(f"Starting Epoch {epoch + 1}/{epochs}")
@@ -743,13 +730,11 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
             val_loader, 
             train_eval_loader, 
             optimizer, 
-            s_ltn_optimizer, 
-            a_ltn_optimizer,
-            m_ltn_optimizer,
             scheduler, 
             tokenizer, 
             device, 
             epoch, 
+            epochs,
             save_iterations, 
             total_params_millions, 
             plot_dir

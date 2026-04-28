@@ -55,7 +55,7 @@ def generate_samples(number_of_samples, output_folder, all_transformations_path,
 
 def main():
     parser = argparse.ArgumentParser(description="Generate transformation samples and save them to specified directories.")
-    parser.add_argument('--samples', type=int, default=500000, help='Number of samples to generate for each transformation type.')
+    parser.add_argument('--samples', type=int, default=5000, help='Number of samples to generate for each transformation type.')
     parser.add_argument('--one_trans_folder', type=str, default="final_data8", help='Output folder for one transformation samples.')
     parser.add_argument('--two_trans_folder', type=str, default="generated_llm_data_two_trans1", help='Output folder for two transformation samples.')
     parser.add_argument('--all_transformations_path', type=str, default="full_trans.json", help='Path to the JSON file storing all transformations.')
