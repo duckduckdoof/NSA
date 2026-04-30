@@ -1,73 +1,75 @@
-import os
-import re
-import math
-import json
-from typing import Any
-import torch
-import random
-import hashlib
 import argparse
-import numpy as np
-from tqdm import tqdm
+import hashlib
+import json
+import math
+import os
+import random
+import re
+from collections import Counter
 from copy import deepcopy
 from pathlib import Path
-from collections import Counter
-from torch import nn, optim
-from torch.utils.data import DataLoader, Dataset
-from torch.nn.utils.rnn import pad_sequence
-import torch.optim.lr_scheduler as lr_scheduler
-from sklearn.model_selection import train_test_split
-from einops import repeat
-from auxilaries.generate_transformation import generate_samples
-from plots import return_task_grid
-from llm.selector_prompt import generate_selector_prompt
-from task import Task
 from shutil import rmtree
+from typing import Any
 
 # LTNs
 import ltn
+import numpy as np
+import torch
+import torch.optim.lr_scheduler as lr_scheduler
+from einops import repeat
+from sklearn.model_selection import train_test_split
+from torch import nn, optim
+from torch.nn.utils.rnn import pad_sequence
+from torch.utils.data import DataLoader, Dataset
+from tqdm import tqdm
+
+from auxilaries.generate_transformation import generate_samples
+from llm.selector_prompt import generate_selector_prompt
+from plots import return_task_grid
+from task import Task
 
 # Constants
 N_EMBED = 512
 COLOR_IDX = 18
 ENABLE_LTN = True
 
+
 class SinusoidalPositionalEncoding(nn.Module):
     def __init__(self, n_embd, max_len=6500):
         super(SinusoidalPositionalEncoding, self).__init__()
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
-        div_term = torch.exp(torch.arange(0, n_embd, 2).float() * (-math.log(10000.0) / n_embd))
+        div_term = torch.exp(
+            torch.arange(0, n_embd, 2).float() * (-math.log(10000.0) / n_embd)
+        )
         pe = torch.zeros(max_len, n_embd)
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
         pe = pe.unsqueeze(0)
-        self.register_buffer('pe', pe)
+        self.register_buffer("pe", pe)
 
     def forward(self, x):
-        return x + self.pe[:, :x.size(1)]
+        return x + self.pe[:, : x.size(1)]
+
 
 # Helper Functions
 def extract_first_from_logits(tokenizer, logits, index, number, already_added=[]):
     first_predictions = logits[index].topk(30, dim=-1)
-    corresponding_tokens = [tokenizer.decode([int(token_id.cpu().numpy())]).strip() for token_id in first_predictions.indices]
-    top_predictions = [x for x in corresponding_tokens if x not in already_added + ["no_trans"]]
+    corresponding_tokens = [
+        tokenizer.decode([int(token_id.cpu().numpy())]).strip()
+        for token_id in first_predictions.indices
+    ]
+    top_predictions = [
+        x for x in corresponding_tokens if x not in already_added + ["no_trans"]
+    ]
     top_predictions = top_predictions[:number]
     return top_predictions
 
+
 def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
     model.eval()
-    dataset_splits = {
-        "train": "dataset/training",
-        "val": "dataset/validation"
-    }
-    results = {
-        "train": {},
-        "val": {}
-    }
-    proposed_transformations_dict = {
-        "train": {},
-        "val": {}
-    }
+    dataset_splits = {"train": "dataset/training", "val": "dataset/validation"}
+    results = {"train": {}, "val": {}}
+    proposed_transformations_dict = {"train": {}, "val": {}}
     for split, directory in dataset_splits.items():
         if not os.path.exists(directory):
             print(f"Directory {directory} does not exist. Skipping {split} split.")
@@ -87,34 +89,44 @@ def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
 
         if os.path.exists(results_file):
             print(f"File {results_file} found and will be updated!")
-            with open(results_file, 'r') as f:
+            with open(results_file, "r") as f:
                 loaded_results = json.load(f)
                 if split in loaded_results:
                     results[split].update(loaded_results[split])
         else:
             print(f"No existing {results_file} found. Creating a new one.")
 
-        correct_solved = sum(1 for task_id in results[split] if results[split][task_id].get('solved'))
+        correct_solved = sum(
+            1 for task_id in results[split] if results[split][task_id].get("solved")
+        )
         total_tasks = len(task_ids)
-        print(f"Processing {total_tasks} tasks in the '{split}' split. {correct_solved} already solved.")
+        print(
+            f"Processing {total_tasks} tasks in the '{split}' split. {correct_solved} already solved."
+        )
 
-        for task_id_json in tqdm(task_ids, total=total_tasks, desc=f"Evaluating {split.capitalize()} Tasks"):
+        for task_id_json in tqdm(
+            task_ids, total=total_tasks, desc=f"Evaluating {split.capitalize()} Tasks"
+        ):
             task_id = task_id_json
-            task_key = task_id_json.replace('.json', '')
+            task_key = task_id_json.replace(".json", "")
             if task_key in results[split]:
-                if results[split][task_key].get('solved'):
+                if results[split][task_key].get("solved"):
                     print(f"Task {task_key} is already solved in results. Skipping.")
                     continue
             print(f"Processing task {task_id} in '{split}' split.")
 
             if tta:
-                checkpoint_path = "small_transformer_based/results/best/checkpoint_epoch99_iter1.pth"
+                checkpoint_path = (
+                    "small_transformer_based/results/best/checkpoint_epoch99_iter1.pth"
+                )
                 if not os.path.exists(checkpoint_path):
-                    print(f"Checkpoint not found at {checkpoint_path}. Skipping TTA for task {task_id}.")
+                    print(
+                        f"Checkpoint not found at {checkpoint_path}. Skipping TTA for task {task_id}."
+                    )
                     model_to_use = model
                 else:
                     checkpoint = torch.load(checkpoint_path, map_location=device)
-                    state_dict = checkpoint['model_state_dict']
+                    state_dict = checkpoint["model_state_dict"]
                     model_tta = deepcopy(model)
                     model_tta.load_state_dict(state_dict)
                     model_tta = model_tta.to(device)
@@ -123,10 +135,12 @@ def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
                     all_transformations_path = f"tta/{task_key}.json"
                     if os.path.exists(all_transformations_path):
                         try:
-                            with open(all_transformations_path, 'r') as f:
+                            with open(all_transformations_path, "r") as f:
                                 tta_data = json.load(f)
                         except Exception as e:
-                            print(f"Error loading TTA data for {task_key}: {e}. Regenerating data.")
+                            print(
+                                f"Error loading TTA data for {task_key}: {e}. Regenerating data."
+                            )
                             os.remove(all_transformations_path)
                             if os.path.exists(output_folder):
                                 rmtree(output_folder)
@@ -134,9 +148,16 @@ def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
                     else:
                         tta_data = []
 
-                    if os.path.exists(output_folder) and len(os.listdir(output_folder)) != len(tta_data):
-                        if abs(len(os.listdir(output_folder)) - len(tta_data)) > 100 and len(tta_data) < 2000:
-                            print(f"Inconsistent TTA data for {task_key}. Regenerating.")
+                    if os.path.exists(output_folder) and len(
+                        os.listdir(output_folder)
+                    ) != len(tta_data):
+                        if (
+                            abs(len(os.listdir(output_folder)) - len(tta_data)) > 100
+                            and len(tta_data) < 2000
+                        ):
+                            print(
+                                f"Inconsistent TTA data for {task_key}. Regenerating."
+                            )
                             if os.path.exists(all_transformations_path):
                                 os.remove(all_transformations_path)
                             rmtree(output_folder)
@@ -151,28 +172,46 @@ def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
                             all_transformations_path=all_transformations_path,
                             no_of_trans=3,
                             transformation_ops=None,
-                            chosen_task=task_key
+                            chosen_task=task_key,
                         )
-                        with open(all_transformations_path, 'r') as f:
+                        with open(all_transformations_path, "r") as f:
                             tta_data = json.load(f)
                     tta_data = [x for x in tta_data if len(x["input"]) < 12000]
                     tta_dataset = CustomDataset(tta_data, tokenizer)
-                    tta_loader = DataLoader(tta_dataset, batch_size=16, shuffle=True, collate_fn=collate_fn)
+                    tta_loader = DataLoader(
+                        tta_dataset, batch_size=16, shuffle=True, collate_fn=collate_fn
+                    )
                     tta_optimizer = optim.AdamW(model_tta.parameters(), lr=5e-5)
-                    tta_scheduler = optim.lr_scheduler.StepLR(tta_optimizer, step_size=10, gamma=0.1)
+                    tta_scheduler = optim.lr_scheduler.StepLR(
+                        tta_optimizer, step_size=10, gamma=0.1
+                    )
                     print(f"--- Model Training for {tta_epochs} Epochs ---")
                     for epoch in range(tta_epochs):
-                        for batch_idx, (input_ids_batch, output_ids_batch) in tqdm(enumerate(tta_loader), total=len(tta_loader), desc=f"TTA Epoch {epoch+1}"):
+                        for batch_idx, (input_ids_batch, output_ids_batch) in tqdm(
+                            enumerate(tta_loader),
+                            total=len(tta_loader),
+                            desc=f"TTA Epoch {epoch + 1}",
+                        ):
                             input_ids_batch = input_ids_batch.to(device)
                             output_ids_batch = output_ids_batch.to(device)
-                            output_ids_batch = output_ids_batch[output_ids_batch != tokenizer.vocab.get("<BOS>", -100)]
-                            output_ids_batch = output_ids_batch[output_ids_batch != tokenizer.vocab.get("<EOS>", -100)]
+                            output_ids_batch = output_ids_batch[
+                                output_ids_batch != tokenizer.vocab.get("<BOS>", -100)
+                            ]
+                            output_ids_batch = output_ids_batch[
+                                output_ids_batch != tokenizer.vocab.get("<EOS>", -100)
+                            ]
                             tta_optimizer.zero_grad()
-                            attention_mask = (input_ids_batch != tokenizer.vocab.get("<PAD>", 0)).to(device)
-                            logits_batch = model_tta(input_ids_batch, attention_mask=attention_mask)
+                            attention_mask = (
+                                input_ids_batch != tokenizer.vocab.get("<PAD>", 0)
+                            ).to(device)
+                            logits_batch = model_tta(
+                                input_ids_batch, attention_mask=attention_mask
+                            )
                             logits_batch = logits_batch.view(-1, logits_batch.size(-1))
                             targets_batch = output_ids_batch.view(-1)
-                            loss = nn.CrossEntropyLoss(ignore_index=tokenizer.vocab.get("<PAD>", 0))(logits_batch, targets_batch)
+                            loss = nn.CrossEntropyLoss(
+                                ignore_index=tokenizer.vocab.get("<PAD>", 0)
+                            )(logits_batch, targets_batch)
                             loss.backward()
                             torch.nn.utils.clip_grad_norm_(model_tta.parameters(), 1)
                             tta_optimizer.step()
@@ -197,19 +236,45 @@ def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
                     first_token = torch.argmax(logits[0][1]).item()
                     second_token = torch.argmax(logits[0][2]).item()
                     include_second = tokenizer.decode([second_token]) != "no_trans"
-                    include_third = include_second and (tokenizer.decode([torch.argmax(logits[0][3]).item()]) != "no_trans")
+                    include_third = include_second and (
+                        tokenizer.decode([torch.argmax(logits[0][3]).item()])
+                        != "no_trans"
+                    )
                     top3_predictions = []
                     if not include_second and not include_third:
                         to_consider = 5
-                        top3_predictions = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=0, number=to_consider, already_added=[])
+                        top3_predictions = extract_first_from_logits(
+                            tokenizer=tokenizer,
+                            logits=logits,
+                            index=0,
+                            number=to_consider,
+                            already_added=[],
+                        )
                     if include_second:
                         to_consider = 4
-                        preds_first = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=0, number=to_consider)
-                        preds_second = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=1, number=to_consider, already_added=preds_first)
+                        preds_first = extract_first_from_logits(
+                            tokenizer=tokenizer,
+                            logits=logits,
+                            index=0,
+                            number=to_consider,
+                        )
+                        preds_second = extract_first_from_logits(
+                            tokenizer=tokenizer,
+                            logits=logits,
+                            index=1,
+                            number=to_consider,
+                            already_added=preds_first,
+                        )
                         top3_predictions += preds_first + preds_second
                     if include_third:
                         to_consider = 3
-                        preds_third = extract_first_from_logits(tokenizer=tokenizer, logits=logits, index=2, number=to_consider, already_added=top3_predictions)
+                        preds_third = extract_first_from_logits(
+                            tokenizer=tokenizer,
+                            logits=logits,
+                            index=2,
+                            number=to_consider,
+                            already_added=top3_predictions,
+                        )
                         top3_predictions += preds_third
                 except Exception as e:
                     print("Exception in using model...")
@@ -219,31 +284,45 @@ def evaluate_true(model, tokenizer, device, tta=False, tta_epochs=1):
             proposed_transformations_dict[split][task_id] = top3_predictions
             data_path = dataset_splits[split]
             try:
-                task = Task(os.path.join(data_path, task_id), proposed_transformations=top3_predictions)
+                task = Task(
+                    os.path.join(data_path, task_id),
+                    proposed_transformations=top3_predictions,
+                )
                 solved = task.solve()
                 if solved:
-                    print(f"Task {task_id} solved successfully with predicted transformations.")
+                    print(
+                        f"Task {task_id} solved successfully with predicted transformations."
+                    )
                     correct_solved += 1
                 else:
-                    print(f"Task {task_id} could not be solved with predicted transformations.")
+                    print(
+                        f"Task {task_id} could not be solved with predicted transformations."
+                    )
             except Exception as e:
-                print(f"Error solving task {task_id} with predicted transformations: {e}")
+                print(
+                    f"Error solving task {task_id} with predicted transformations: {e}"
+                )
                 solved = False
             results[split][task_key] = {
-                'solved': solved,
-                'predictions': top3_predictions
+                "solved": solved,
+                "predictions": top3_predictions,
             }
-            with open(results_file, 'w') as f:
+            with open(results_file, "w") as f:
                 json.dump({split: results[split]}, f, indent=4)
             print(f"Results saved to {results_file}")
-        print(f"Number of '{split}' tasks correctly solved: {correct_solved} out of {total_tasks}")
+        print(
+            f"Number of '{split}' tasks correctly solved: {correct_solved} out of {total_tasks}"
+        )
     proposed_transformations_file = "proposed_transformations.txt"
-    with open(proposed_transformations_file, 'w') as f:
+    with open(proposed_transformations_file, "w") as f:
         for split in proposed_transformations_dict:
-            for task_id, transformations in proposed_transformations_dict[split].items():
+            for task_id, transformations in proposed_transformations_dict[
+                split
+            ].items():
                 f.write(f"{split}/{task_id}: {transformations}\n")
     print(f"Proposed transformations saved to {proposed_transformations_file}")
     return results
+
 
 def create_training_data_summary(train_data):
     training_data_summary = []
@@ -253,47 +332,71 @@ def create_training_data_summary(train_data):
         task_dict = {
             "transformation": data["output"],
             "input_dims": [np.array(pair["input"]).shape for pair in x],
-            "output_dims": [np.array(pair["output"]).shape for pair in x]
+            "output_dims": [np.array(pair["output"]).shape for pair in x],
         }
         training_data_summary.append(task_dict)
-    with open('training_data_summary.json', 'w') as json_file:
+    with open("training_data_summary.json", "w") as json_file:
         json.dump(training_data_summary, json_file, indent=4)
     print("...CREATED AND SAVED DATA SUMMARY IN JSON")
 
+
 def save_model_checkpoint(model, optimizer, epoch, iteration, save_path):
     checkpoint = {
-        'epoch': epoch,
-        'iteration': iteration,
-        'model_state_dict': model.module.state_dict(),
-        'optimizer_state_dict': optimizer.state_dict(),
+        "epoch": epoch,
+        "iteration": iteration,
+        "model_state_dict": model.module.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
     }
     torch.save(checkpoint, save_path)
     print(f"Model checkpoint saved at {save_path}")
 
+
 def balance_transformations(data):
     required_transformations = [
-        "update_color", "move_node", "extend_node", "move_node_max",
-        "rotate_node", "add_border", "fill_rectangle", "extract",
-        "hollow_rectangle", "mirror",
-        "flip", "remove_node", "insert",
-        'duplicate', 'upscale_grid', "crop", "fill", "magnet", "beam", "shift",
-        "arbitrary_duplicate", "rotate_duplicate",
+        "update_color",
+        "move_node",
+        "extend_node",
+        "move_node_max",
+        "rotate_node",
+        "add_border",
+        "fill_rectangle",
+        "extract",
+        "hollow_rectangle",
+        "mirror",
+        "flip",
+        "remove_node",
+        "insert",
+        "duplicate",
+        "upscale_grid",
+        "crop",
+        "fill",
+        "magnet",
+        "beam",
+        "shift",
+        "arbitrary_duplicate",
+        "rotate_duplicate",
         "rotate_grid",
-        "connect", "recolor", "truncate"
+        "connect",
+        "recolor",
+        "truncate",
     ]
-    transformation_samples = {transformation: [] for transformation in required_transformations}
+    transformation_samples = {
+        transformation: [] for transformation in required_transformations
+    }
     less_than_two_no_trans_samples = []
     for item in data:
-        output_text = item['output'].strip()
+        output_text = item["output"].strip()
         transformations = output_text.split()
-        no_trans_count = transformations.count('no_trans')
+        no_trans_count = transformations.count("no_trans")
         if len(transformations) == 3 and no_trans_count == 2:
             first_transformation = transformations[0]
             if first_transformation in required_transformations:
                 transformation_samples[first_transformation].append(item)
         elif no_trans_count < 2:
             less_than_two_no_trans_samples.append(item)
-    non_zero_counts = [len(samples) for samples in transformation_samples.values() if len(samples) > 0]
+    non_zero_counts = [
+        len(samples) for samples in transformation_samples.values() if len(samples) > 0
+    ]
     if not non_zero_counts:
         print("No samples found with two 'no_trans' transformations to balance.")
         balanced_data = less_than_two_no_trans_samples.copy()
@@ -310,22 +413,27 @@ def balance_transformations(data):
     print(f"Total balanced samples: {len(balanced_data)}")
     return balanced_data
 
+
 def decode2task(text):
     pattern = re.compile(r"Input\s*\n([\d\s\|\n]+)Output\s*\n([\d\s\|\n]+)", re.DOTALL)
     matches = pattern.findall(text)
     if not matches:
-        pattern = re.compile(r"Input:\s*\n([\d\s\|\n]+)Output:\s*\n([\d\s\|\n]+)", re.DOTALL)
+        pattern = re.compile(
+            r"Input:\s*\n([\d\s\|\n]+)Output:\s*\n([\d\s\|\n]+)", re.DOTALL
+        )
         matches = pattern.findall(text)
+
     def parse_grid(grid_text):
         rows = grid_text.strip().split("\n")
-        return [[int(cell.strip()) for cell in row.split('|')] for row in rows]
+        return [[int(cell.strip()) for cell in row.split("|")] for row in rows]
+
     input_output_pairs = []
     for input_grid, output_grid in matches:
-        input_output_pairs.append({
-            'input': parse_grid(input_grid),
-            'output': parse_grid(output_grid)
-        })
+        input_output_pairs.append(
+            {"input": parse_grid(input_grid), "output": parse_grid(output_grid)}
+        )
     return input_output_pairs
+
 
 def extract_input_output_pairs(text, use_2dpe=False):
     pattern = re.compile(r"Input:\n([\d\|\n]+)\nOutput:\n([\d\|\n]+)", re.DOTALL)
@@ -339,16 +447,41 @@ def extract_input_output_pairs(text, use_2dpe=False):
         input_output_pairs.append(f"Input:\n{input_grid}\nOutput:\n{output_grid}")
     return "\n".join(input_output_pairs)
 
+
 # Custom Tokenizer
 class CustomTokenizer:
-    def __init__(self, special_tokens=["<PAD>", "<UNK>", "<BOS>", "<EOS>"], transformations=None):
+    def __init__(
+        self, special_tokens=["<PAD>", "<UNK>", "<BOS>", "<EOS>"], transformations=None
+    ):
         self.special_tokens = special_tokens
         self.transformations = transformations or [
-            "update_color", "move_node", "extend_node", "move_node_max",
-            "rotate_node", "add_border", "fill_rectangle", "extract",
-            "hollow_rectangle", "mirror", "flip", "remove_node", "insert",
-            'duplicate', 'upscale_grid', "crop", "fill", "magnet", "beam", "shift", "no_trans",
-            "arbitrary_duplicate", "rotate_duplicate", "mirror_grid", 'rotate_grid', "connect", "recolor",
+            "update_color",
+            "move_node",
+            "extend_node",
+            "move_node_max",
+            "rotate_node",
+            "add_border",
+            "fill_rectangle",
+            "extract",
+            "hollow_rectangle",
+            "mirror",
+            "flip",
+            "remove_node",
+            "insert",
+            "duplicate",
+            "upscale_grid",
+            "crop",
+            "fill",
+            "magnet",
+            "beam",
+            "shift",
+            "no_trans",
+            "arbitrary_duplicate",
+            "rotate_duplicate",
+            "mirror_grid",
+            "rotate_grid",
+            "connect",
+            "recolor",
             "truncate",
         ]
         self.vocab = {}
@@ -362,9 +495,9 @@ class CustomTokenizer:
             self.vocab[token] = idx
             idx += 1
         predefined_tokens = (
-            ["Input", "Output", "\n", "|"] +
-            [str(i) for i in range(10)] +
-            self.transformations
+            ["Input", "Output", "\n", "|"]
+            + [str(i) for i in range(10)]
+            + self.transformations
         )
         for token in predefined_tokens:
             self.vocab[token] = idx
@@ -388,13 +521,9 @@ class CustomTokenizer:
             text = str(text[0])
         else:
             raise Exception("Wrong type")
-        combined_keywords = sorted(
-            self.transformations,
-            key=len, reverse=True
-        )
-        pattern = (
-            r'\d+|Input|:|,|Output|\||\n|\{|\}|' +
-            '|'.join(map(re.escape, combined_keywords))
+        combined_keywords = sorted(self.transformations, key=len, reverse=True)
+        pattern = r"\d+|Input|:|,|Output|\||\n|\{|\}|" + "|".join(
+            map(re.escape, combined_keywords)
         )
         grid_tokens = re.findall(pattern, text)
         for token in grid_tokens:
@@ -418,13 +547,14 @@ class CustomTokenizer:
         return decoded_text.replace("<BOS>", "").replace("<EOS>", "").strip()
 
     def save_vocab(self, file_path):
-        with open(file_path, 'w') as f:
+        with open(file_path, "w") as f:
             json.dump(self.vocab, f)
 
     def load_vocab(self, file_path):
-        with open(file_path, 'r') as f:
+        with open(file_path, "r") as f:
             self.vocab = json.load(f)
             self.inv_vocab = {v: k for k, v in self.vocab.items()}
+
 
 # LTN Implementations
 class ColorPredicate(nn.Module):
@@ -442,18 +572,32 @@ class ColorPredicate(nn.Module):
         out = self.sigmoid(x)
         return out
 
+
 # LTN Connectives
 Not = ltn.Connective(ltn.fuzzy_ops.NotStandard())
 And = ltn.Connective(ltn.fuzzy_ops.AndProd())
 Or = ltn.Connective(ltn.fuzzy_ops.OrProbSum())
 Implies = ltn.Connective(ltn.fuzzy_ops.ImpliesReichenbach())
-Equiv = ltn.Connective(ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach()))
+Equiv = ltn.Connective(
+    ltn.fuzzy_ops.Equiv(ltn.fuzzy_ops.AndProd(), ltn.fuzzy_ops.ImpliesReichenbach())
+)
 Forall = ltn.Quantifier(ltn.fuzzy_ops.AggregPMeanError(p=2), quantifier="f")
 Exists = ltn.Quantifier(ltn.fuzzy_ops.AggregPMean(p=6), quantifier="e")
 
+
 # Transformer Model
 class CustomTransformer(nn.Module):
-    def __init__(self, vocab_size, n_positions=512, n_embd=N_EMBED, n_layer=8, n_head=8, dropout=0., use_2dpe=False, num_cls_tokens=3):
+    def __init__(
+        self,
+        vocab_size,
+        n_positions=512,
+        n_embd=N_EMBED,
+        n_layer=8,
+        n_head=8,
+        dropout=0.0,
+        use_2dpe=False,
+        num_cls_tokens=3,
+    ):
         super(CustomTransformer, self).__init__()
         n_inner = 4 * n_embd
         self.num_cls_tokens = num_cls_tokens
@@ -465,11 +609,18 @@ class CustomTransformer(nn.Module):
         else:
             self.pos_encoding = SinusoidalPositionalEncoding(n_embd)
         self.dropout = nn.Dropout(dropout)
-        self.transformer_blocks = nn.ModuleList([
-            nn.TransformerEncoderLayer(d_model=n_embd, nhead=n_head, dim_feedforward=n_inner, dropout=dropout,
-                                       batch_first=True)
-            for _ in range(n_layer)
-        ])
+        self.transformer_blocks = nn.ModuleList(
+            [
+                nn.TransformerEncoderLayer(
+                    d_model=n_embd,
+                    nhead=n_head,
+                    dim_feedforward=n_inner,
+                    dropout=dropout,
+                    batch_first=True,
+                )
+                for _ in range(n_layer)
+            ]
+        )
         self.fc_out = nn.Linear(n_embd, vocab_size)
 
     def forward(self, input_ids, attention_mask=None):
@@ -477,45 +628,54 @@ class CustomTransformer(nn.Module):
         b, n, _ = x.shape
         x = self.pos_encoding(x)
         x = self.dropout(x)
-        cls_tokens = repeat(self.cls_tokens, '1 n d -> b n d', b=b)
+        cls_tokens = repeat(self.cls_tokens, "1 n d -> b n d", b=b)
         x = torch.cat((cls_tokens, x), dim=1)
         if attention_mask is not None:
-            cls_attention_mask = torch.ones((b, self.num_cls_tokens), device=attention_mask.device).type_as(attention_mask)
+            cls_attention_mask = torch.ones(
+                (b, self.num_cls_tokens), device=attention_mask.device
+            ).type_as(attention_mask)
             attention_mask = torch.cat((cls_attention_mask, attention_mask), dim=1)
         for block in self.transformer_blocks:
-            x = block(x, src_key_padding_mask=(~attention_mask.bool()) if attention_mask is not None else None)
-        cls_outputs = x[:, :self.num_cls_tokens, :]
+            x = block(
+                x,
+                src_key_padding_mask=(~attention_mask.bool())
+                if attention_mask is not None
+                else None,
+            )
+        cls_outputs = x[:, : self.num_cls_tokens, :]
         logits = self.fc_out(cls_outputs)
 
         return cls_outputs, logits
 
+
 class CombinedModel(nn.Module):
     """
     Class which includes both the custom transformer and the LTN.
-    
+
     It's all got to be in a single pipeline.
     """
+
     def __init__(
-            self, 
-            vocab_size, 
-            n_positions=512, 
-            n_embd=N_EMBED, 
-            n_layer=8, 
-            n_head=8, 
-            dropout=0., 
-            use_2dpe=False, 
-            num_cls_tokens=3
-            ) -> None:
+        self,
+        vocab_size,
+        n_positions=512,
+        n_embd=N_EMBED,
+        n_layer=8,
+        n_head=8,
+        dropout=0.0,
+        use_2dpe=False,
+        num_cls_tokens=3,
+    ) -> None:
         super(CombinedModel, self).__init__()
         self.custom_trans = CustomTransformer(
-            vocab_size, 
-            n_positions, 
-            n_embd, 
-            n_layer, 
-            n_head, 
-            dropout, 
-            use_2dpe, 
-            num_cls_tokens
+            vocab_size,
+            n_positions,
+            n_embd,
+            n_layer,
+            n_head,
+            dropout,
+            use_2dpe,
+            num_cls_tokens,
         )
         self.C = ltn.Predicate(model=ColorPredicate(N_EMBED))
 
@@ -539,15 +699,15 @@ class CombinedModel(nn.Module):
         # LTN probs
         color_probs = torch.sigmoid(logits[:, COLOR_IDX])
 
-        proposes_color = ltn.Variable("proposes_color", color_probs, add_batch_dim=False)
+        proposes_color = ltn.Variable(
+            "proposes_color", color_probs, add_batch_dim=False
+        )
 
         # color axiom
-        color_axiom_sat = Forall(
-            nodes,
-            Equiv(self.C(nodes), proposes_color)
-        )
+        color_axiom_sat = Forall(nodes, Equiv(self.C(nodes), proposes_color))
         loss = 1.0 - color_axiom_sat.value
         return loss, logits
+
 
 # Dataset Implementation
 class CustomDataset(Dataset):
@@ -561,12 +721,13 @@ class CustomDataset(Dataset):
 
     def __getitem__(self, idx):
         item = self.data[idx]
-        input_text = item['input']
+        input_text = item["input"]
         output_text = str(item["output"])
         combined_input = extract_input_output_pairs(input_text)
         input_ids = self.tokenizer.encode(combined_input, max_length=self.max_length)
         output_ids = self.tokenizer.encode(output_text, max_length=self.max_length)
         return torch.tensor(input_ids), torch.tensor(output_ids)
+
 
 def collate_fn(batch):
     input_ids = [item[0] for item in batch]
@@ -575,34 +736,36 @@ def collate_fn(batch):
     padded_output_ids = pad_sequence(output_ids, batch_first=True, padding_value=0)
     return padded_input_ids, padded_output_ids
 
+
 # Helper Function to calculate file hash
 def calculate_file_hash(file_path):
     hasher = hashlib.md5()
-    with open(file_path, 'rb') as f:
+    with open(file_path, "rb") as f:
         buf = f.read()
         hasher.update(buf)
     return hasher.hexdigest()
 
+
 # Training Function
 def train(
-        model, 
-        train_loader, 
-        val_loader, 
-        train_eval_loader, 
-        optimizer, 
-        scheduler, 
-        tokenizer, 
-        device, 
-        epoch, 
-        total_epochs,
-        save_iterations, 
-        total_params_millions, 
-        plot_dir,
-        ltn_epoch_start=20,
-        lambda_ltn_max=0.1
-        ):
+    model,
+    train_loader,
+    val_loader,
+    train_eval_loader,
+    optimizer,
+    scheduler,
+    tokenizer,
+    device,
+    epoch,
+    total_epochs,
+    save_iterations,
+    total_params_millions,
+    plot_dir,
+    ltn_epoch_start=20,
+    lambda_ltn_max=0.1,
+):
     model.train()
-    progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}", leave=False)
+    progress_bar = tqdm(train_loader, desc=f"Epoch {epoch + 1}", leave=False)
     batch_losses = 0
     lambda_ltn = 0.0
     least_loss = 100.0
@@ -624,14 +787,16 @@ def train(
         # This contains a list (on the batch dimension) of the correct functional (ignoring PAD)
 
         # This is where the LTN loss should be accounted for
-        loss = nn.CrossEntropyLoss(ignore_index=tokenizer.vocab["<PAD>"])(logits, targets)
+        loss = nn.CrossEntropyLoss(ignore_index=tokenizer.vocab["<PAD>"])(
+            logits, targets
+        )
 
         # Factor in LTN losses, if applicable
         # AT THIS POINT --> we have one value for loss, and b values for ltn losses (b=batch dim).
         # We need to factor in the avg loss, then apply lambda_ltn.
         avg_ltn_loss = torch.mean(ltn_loss)
         if ENABLE_LTN and epoch >= ltn_epoch_start:
-            lambda_ltn = (epoch/total_epochs) * lambda_ltn_max
+            lambda_ltn = (epoch / total_epochs) * lambda_ltn_max
 
         # Apply loss term from LTN (FINALLY)
         loss = loss + (lambda_ltn * avg_ltn_loss)
@@ -647,7 +812,10 @@ def train(
         if (batch_idx + 1) % args.print_iterations == 0:
             random_idx = random.randint(0, len(logits) - 1)
             top3_logits = logits[random_idx].topk(3, dim=-1)
-            top3_predictions = [tokenizer.decode([int(token_id)]) for token_id in top3_logits.indices.cpu().numpy()]
+            top3_predictions = [
+                tokenizer.decode([int(token_id)])
+                for token_id in top3_logits.indices.cpu().numpy()
+            ]
             true_output = tokenizer.decode([int(targets[random_idx].cpu().numpy())])
             print(f"Iteration {batch_idx + 1}:")
             print(f"Top 3 Predictions: {top3_predictions}")
@@ -656,13 +824,16 @@ def train(
             checkpoint_path = os.path.join(
                 plot_dir, f"checkpoint_epoch{epoch}_iter{batch_idx + 1}.pth"
             )
-            save_model_checkpoint(model, optimizer, epoch, batch_idx + 1, checkpoint_path)
+            save_model_checkpoint(
+                model, optimizer, epoch, batch_idx + 1, checkpoint_path
+            )
         if (batch_idx + 1) % save_iterations == 0:
             batch_losses = 0
     # scheduler.step()
     print()
     print(f" ====== EPOCH {epoch} SMALLEST LOSS: {least_loss} ======")
     print()
+
 
 # Main Function
 def main(data_path, epochs=1, batch_size=32, save_iterations=100):
@@ -672,11 +843,11 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
     vocab_file = "vocab.json"
     current_hash = calculate_file_hash(data_path)
     if os.path.exists(cache_file):
-        with open(cache_file, 'r') as f:
+        with open(cache_file, "r") as f:
             cached_hash = f.read().strip()
     else:
         cached_hash = None
-    with open(data_path, 'r') as f:
+    with open(data_path, "r") as f:
         data = json.load(f)
     if not len(data):
         raise Exception("No data loaded!")
@@ -685,11 +856,16 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
     balanced_data = balance_transformations(data)
     print(f"Balanced dataset contains {len(balanced_data)} samples")
     if cached_hash != current_hash or not os.path.exists("vocab.json"):
-        print("Dataset changed or vocabulary does not exist yet. Creating a new vocabulary.")
-        all_texts = [f"{extract_input_output_pairs(item['input'])} {item['output']}" for item in tqdm(balanced_data)]
+        print(
+            "Dataset changed or vocabulary does not exist yet. Creating a new vocabulary."
+        )
+        all_texts = [
+            f"{extract_input_output_pairs(item['input'])} {item['output']}"
+            for item in tqdm(balanced_data)
+        ]
         tokenizer.build_vocab(all_texts)
         tokenizer.save_vocab(vocab_file)
-        with open(cache_file, 'w') as f:
+        with open(cache_file, "w") as f:
             f.write(current_hash)
     else:
         print("Detected same dataset as before. Loading the vocabulary.")
@@ -700,26 +876,39 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
         train_data = data
         val_data = data
     else:
-        train_data, val_data = train_test_split(balanced_data, test_size=0.1, random_state=42)
-        _, train_eval_data = train_test_split(train_data, test_size=0.1, random_state=42)
+        train_data, val_data = train_test_split(
+            balanced_data, test_size=0.1, random_state=42
+        )
+        _, train_eval_data = train_test_split(
+            train_data, test_size=0.1, random_state=42
+        )
     if cached_hash != current_hash or not os.path.exists("vocab.json"):
         create_training_data_summary(train_data)
     train_dataset = CustomDataset(train_data, tokenizer)
     val_dataset = CustomDataset(val_data, tokenizer)
     train_eval_dataset = CustomDataset(train_eval_data, tokenizer)
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
-    val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn)
-    train_eval_loader = DataLoader(train_eval_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn)
+    train_loader = DataLoader(
+        train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn
+    )
+    val_loader = DataLoader(
+        val_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn
+    )
+    train_eval_loader = DataLoader(
+        train_eval_dataset, batch_size=16, shuffle=False, collate_fn=collate_fn
+    )
     model = CombinedModel(vocab_size=len(tokenizer.vocab), use_2dpe=args.use_2dpe)
     print(f"LENGTH OF VOCABULARY: {len(tokenizer.vocab)}")
     if torch.cuda.device_count() > 1:
         print(f"Using {torch.cuda.device_count()} GPUs")
         model = nn.DataParallel(model)
     model = model.to(device)
-    optimizer = optim.AdamW([
-        {'params': model.module.custom_trans.parameters(), 'lr': 5e-5},
-        {'params': model.module.C.model.parameters(), 'lr': 0.001}
-    ], lr=5e-5)
+    optimizer = optim.AdamW(
+        [
+            {"params": model.module.custom_trans.parameters(), "lr": 5e-5},
+            {"params": model.module.C.model.parameters(), "lr": 0.001},
+        ],
+        lr=5e-5,
+    )
     scheduler = lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total_params_millions = total_params / 1_000_000
@@ -729,29 +918,41 @@ def main(data_path, epochs=1, batch_size=32, save_iterations=100):
     for epoch in range(epochs):
         print(f"Starting Epoch {epoch + 1}/{epochs}")
         train(
-            model, 
-            train_loader, 
-            val_loader, 
-            train_eval_loader, 
-            optimizer, 
-            scheduler, 
-            tokenizer, 
-            device, 
-            epoch, 
+            model,
+            train_loader,
+            val_loader,
+            train_eval_loader,
+            optimizer,
+            scheduler,
+            tokenizer,
+            device,
+            epoch,
             epochs,
-            save_iterations, 
-            total_params_millions, 
-            plot_dir
+            save_iterations,
+            total_params_millions,
+            plot_dir,
         )
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train a Custom Transformer Model")
-    parser.add_argument('--data_path', type=str, default="full_trans.json")
-    parser.add_argument('--save_iterations', type=int, default=1)
-    parser.add_argument('--print_iterations', type=int, default=1)
-    parser.add_argument("--use_2dpe", action="store_true", help="Enable 2D positional encoding.")
-    parser.add_argument('--overfit_single_example', action='store_true', help="If set, the model will train on a single example.")
+    parser.add_argument("--data_path", type=str, default="full_trans.json")
+    parser.add_argument("--save_iterations", type=int, default=1)
+    parser.add_argument("--print_iterations", type=int, default=1)
+    parser.add_argument(
+        "--use_2dpe", action="store_true", help="Enable 2D positional encoding."
+    )
+    parser.add_argument(
+        "--overfit_single_example",
+        action="store_true",
+        help="If set, the model will train on a single example.",
+    )
     args = parser.parse_args()
     batch_size = 32
     print(f"RUNNING CODE WITH BATCH_SIZE {batch_size}")
-    main(args.data_path, epochs=100, batch_size=batch_size, save_iterations=args.save_iterations)
+    main(
+        args.data_path,
+        epochs=100,
+        batch_size=batch_size,
+        save_iterations=args.save_iterations,
+    )

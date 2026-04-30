@@ -11,5 +11,7 @@ full_trans.json
 dataset_cache.txt
 eval_no_ltn.txt
 eval_ltn.txt
+eval_ltn_cpy_safe.txt
 training_data_summary.json
 vocab.json
+*.zip

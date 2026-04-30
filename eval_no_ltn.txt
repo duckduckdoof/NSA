@@ -5,3 +5,492 @@ No existing arga_training_no_tta.json found. Creating a new one.
 Processing 395 tasks in the 'train' split. 0 already solved.
 Processing task 7837ac64.json in 'train' split.
 Running task.solve() for #7837ac64
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 917040
+Number of New Nodes Added to Frontier = 18960
+Solution Not Found! Best Solution has cost of inf, Abstraction used: na, Apply Call = 
+[]
+Runtime till solution: 1836.9740495681763
+The solution found predicted 270 out of 841 pixels incorrectly
+Reconstructed Grid:
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 4, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 4, 2, 2, 2, 2, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 8, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+[0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+Expected Grid:
+[1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Task 7837ac64.json solved successfully with predicted transformations.
+Results saved to arga_training_no_tta.json
+Processing task 4522001f.json in 'train' split.
+Running task.solve() for #4522001f
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 840724
+Number of New Nodes Added to Frontier = 21844
+Expanding frontier node with abstraction nbccg
+Found 3 Applicable Filters
+Number of New Candidate Nodes = 112
+Number of New Nodes Added to Frontier = 0
+Skipping abstraction ccgbr as it is the same as abstraction nbccg
+Skipping abstraction ccgbr2 as it is the same as abstraction nbccg
+Expanding frontier node with abstraction ccg
+Found 7 Applicable Filters
+Number of New Candidate Nodes = 49
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction mcccg
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 36
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction lrg
+Found 6 Applicable Filters
+Number of New Candidate Nodes = 104
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbvcg
+Found 5 Applicable Filters
+Number of New Candidate Nodes = 95
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbhcg
+Found 5 Applicable Filters
+Number of New Candidate Nodes = 95
+Number of New Nodes Added to Frontier = 0
+Exploring frontier node with score 54 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['upscale_grid'], 'transformation_params': [{'factor': 3, 'mirror': False, 'upscale_type': 'pixel_based', 'color': 0, 'border_color': 0, 'fill_color': 0}]}]
+Expanding frontier node with abstraction na
+Error solving task 4522001f.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task ce22a75a.json in 'train' split.
+Running task.solve() for #ce22a75a
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 846914
+Number of New Nodes Added to Frontier = 103355
+Expanding frontier node with abstraction nbccg
+Found 3 Applicable Filters
+Number of New Candidate Nodes = 81
+Number of New Nodes Added to Frontier = 75
+Skipping abstraction ccgbr as it is the same as abstraction nbccg
+Skipping abstraction ccgbr2 as it is the same as abstraction nbccg
+Expanding frontier node with abstraction ccg
+Found 14 Applicable Filters
+Number of New Candidate Nodes = 14
+Number of New Nodes Added to Frontier = 14
+Skipping abstraction mcccg as it is the same as abstraction nbccg
+Skipping abstraction nbvcg as it is the same as abstraction nbccg
+Skipping abstraction nbhcg as it is the same as abstraction nbccg
+Exploring frontier node with score 56 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['connect'], 'transformation_params': [{'connect_mode': 'connect_with_line', 'color': 0, 'fill_color': 1, 'border_color': 0, 'inherit_vertical': True}]}]
+Expanding frontier node with abstraction na
+Error solving task ce22a75a.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task 6e19193c.json in 'train' split.
+Running task.solve() for #6e19193c
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 843026
+Number of New Nodes Added to Frontier = 102485
+Expanding frontier node with abstraction nbccg
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 26
+Number of New Nodes Added to Frontier = 25
+Skipping abstraction ccgbr as it is the same as abstraction nbccg
+Skipping abstraction ccgbr2 as it is the same as abstraction nbccg
+Expanding frontier node with abstraction ccg
+Found 7 Applicable Filters
+Number of New Candidate Nodes = 7
+Number of New Nodes Added to Frontier = 7
+Skipping abstraction mcccg as it is the same as abstraction nbccg
+Expanding frontier node with abstraction nbvcg
+Found 3 Applicable Filters
+Number of New Candidate Nodes = 3
+Number of New Nodes Added to Frontier = 3
+Expanding frontier node with abstraction nbhcg
+Found 3 Applicable Filters
+Number of New Candidate Nodes = 3
+Number of New Nodes Added to Frontier = 3
+Exploring frontier node with score 14 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['crop'], 'transformation_params': [{'corner': 'left upper', 'crop_type': 'corner_based', 'grid_size': 10, 'fill_color': 0, 'border_color': 0, 'fill_direction': 'right_to_left', 'connect_all': True}]}]
+Expanding frontier node with abstraction na
+Error solving task 6e19193c.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task 4938f0c2.json in 'train' split.
+Running task.solve() for #4938f0c2
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 846914
+Number of New Nodes Added to Frontier = 82803
+Expanding frontier node with abstraction nbccg
+Found 22 Applicable Filters
+Number of New Candidate Nodes = 572
+Number of New Nodes Added to Frontier = 440
+Expanding frontier node with abstraction ccgbr
+Found 36 Applicable Filters
+Number of New Candidate Nodes = 216
+Number of New Nodes Added to Frontier = 0
+Skipping abstraction ccgbr2 as it is the same as abstraction ccgbr
+Expanding frontier node with abstraction ccg
+Found 112 Applicable Filters
+Number of New Candidate Nodes = 672
+Number of New Nodes Added to Frontier = 159
+Skipping abstraction mcccg as it is the same as abstraction nbccg
+Expanding frontier node with abstraction lrg
+Found 65 Applicable Filters
+Number of New Candidate Nodes = 390
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbvcg
+Found 64 Applicable Filters
+Number of New Candidate Nodes = 384
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbhcg
+Found 59 Applicable Filters
+Number of New Candidate Nodes = 354
+Number of New Nodes Added to Frontier = 0
+Exploring frontier node with score 48 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['magnet'], 'transformation_params': [{'magnet_type': 'magnet_line', 'shifting_direction': 'dynamic', 'color1': 1, 'color2': 1, 'grid_size': 1}]}]
+Expanding frontier node with abstraction na
+Error solving task 4938f0c2.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task 8d510a79.json in 'train' split.
+Running task.solve() for #8d510a79
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 847609
+Number of New Nodes Added to Frontier = 68661
+Expanding frontier node with abstraction nbccg
+Found 65 Applicable Filters
+Number of New Candidate Nodes = 1365
+Number of New Nodes Added to Frontier = 1365
+Skipping abstraction ccgbr as it is the same as abstraction nbccg
+Skipping abstraction ccgbr2 as it is the same as abstraction nbccg
+Expanding frontier node with abstraction ccg
+Found 178 Applicable Filters
+Number of New Candidate Nodes = 178
+Number of New Nodes Added to Frontier = 178
+Skipping abstraction mcccg as it is the same as abstraction nbccg
+Expanding frontier node with abstraction nbvcg
+Found 103 Applicable Filters
+Number of New Candidate Nodes = 103
+Number of New Nodes Added to Frontier = 103
+Skipping abstraction nbhcg as it is the same as abstraction nbccg
+Exploring frontier node with score 20 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['connect'], 'transformation_params': [{'connect_mode': 'connect_taxicab', 'color': 2, 'fill_color': 5, 'border_color': 2, 'inherit_vertical': True}]}]
+Expanding frontier node with abstraction na
+Error solving task 8d510a79.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task ce4f8723.json in 'train' split.
+Running task.solve() for #ce4f8723
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 840723
+Number of New Nodes Added to Frontier = 19841
+Expanding frontier node with abstraction nbccg
+Found 449 Applicable Filters
+Number of New Candidate Nodes = 20758
+Number of New Nodes Added to Frontier = 92
+Expanding frontier node with abstraction ccgbr
+Found 742 Applicable Filters
+Number of New Candidate Nodes = 4452
+Number of New Nodes Added to Frontier = 141
+Expanding frontier node with abstraction ccgbr2
+Found 536 Applicable Filters
+Number of New Candidate Nodes = 3216
+Number of New Nodes Added to Frontier = 82
+Expanding frontier node with abstraction ccg
+Found 732 Applicable Filters
+Number of New Candidate Nodes = 4392
+Number of New Nodes Added to Frontier = 308
+Expanding frontier node with abstraction mcccg
+Found 198 Applicable Filters
+Number of New Candidate Nodes = 8423
+Number of New Nodes Added to Frontier = 10
+Expanding frontier node with abstraction lrg
+Found 384 Applicable Filters
+Number of New Candidate Nodes = 9302
+Number of New Nodes Added to Frontier = 78
+Expanding frontier node with abstraction nbvcg
+Found 292 Applicable Filters
+Number of New Candidate Nodes = 7736
+Number of New Nodes Added to Frontier = 39
+Expanding frontier node with abstraction nbhcg
+Found 362 Applicable Filters
+Number of New Candidate Nodes = 9045
+Number of New Nodes Added to Frontier = 67
+Exploring frontier node with score 13 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['crop'], 'transformation_params': [{'corner': 'left upper', 'crop_type': 'symetrics_based', 'grid_size': 4, 'fill_color': 0, 'border_color': 3, 'fill_direction': 'right_to_left', 'connect_all': True}]}]
+Expanding frontier node with abstraction na
+Error solving task ce4f8723.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task 9aec4887.json in 'train' split.
+Running task.solve() for #9aec4887
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 835623
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbccg
+Found 38 Applicable Filters
+Number of New Candidate Nodes = 0
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction ccgbr
+Found 40 Applicable Filters
+Number of New Candidate Nodes = 0
+Number of New Nodes Added to Frontier = 0
+Skipping abstraction ccgbr2 as it is the same as abstraction ccgbr
+Expanding frontier node with abstraction ccg
+Found 41 Applicable Filters
+Number of New Candidate Nodes = 0
+Number of New Nodes Added to Frontier = 0
+Skipping abstraction mcccg as it is the same as abstraction nbccg
+Expanding frontier node with abstraction lrg
+Found 41 Applicable Filters
+Number of New Candidate Nodes = 0
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbvcg
+Found 44 Applicable Filters
+Number of New Candidate Nodes = 0
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbhcg
+Found 42 Applicable Filters
+Number of New Candidate Nodes = 0
+Number of New Nodes Added to Frontier = 0
+Solution Not Found due to empty search space! Best Solution has cost of inf, Abstraction used: None, Apply Call = 
+None
+Runtime till solution: 6053.133805990219
+Error solving task 9aec4887.json with predicted transformations: None
+Results saved to arga_training_no_tta.json
+Processing task f1cefba8.json in 'train' split.
+Running task.solve() for #f1cefba8
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 849112
+Number of New Nodes Added to Frontier = 7701
+Solution Not Found! Best Solution has cost of inf, Abstraction used: na, Apply Call = 
+[]
+Runtime till solution: 5845.780676364899
+The solution found predicted 45 out of 342 pixels incorrectly
+Reconstructed Grid:
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 8, 1, 1, 1, 8, 1, 1, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Expected Grid:
+[0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 8, 8]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 8, 8, 8, 1, 8, 8, 8, 1, 8, 8, 1, 1, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0]
+Task f1cefba8.json solved successfully with predicted transformations.
+Results saved to arga_training_no_tta.json
+Processing task d037b0a7.json in 'train' split.
+Running task.solve() for #d037b0a7
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 839509
+Number of New Nodes Added to Frontier = 77641
+Expanding frontier node with abstraction nbccg
+Found 28 Applicable Filters
+Number of New Candidate Nodes = 1416
+Number of New Nodes Added to Frontier = 11
+Solution Found! Abstraction used: nbccg, Apply Call = 
+[{'filters': ['filter_by_color'], 'filter_params': [{'color': 0, 'exclude': True}], 'transformation': ['extend_node'], 'transformation_params': [{'direction': <Direction.DOWN: 'DOWN'>, 'overlap': True}]}]
+Runtime till solution: 249.88290286064148
+The solution found produced the correct test output!
+Reconstructed Grid:
+[4, 0, 8]
+[4, 0, 8]
+[4, 7, 8]
+Expected Grid:
+[4, 0, 8]
+[4, 0, 8]
+[4, 7, 8]
+Task d037b0a7.json solved successfully with predicted transformations.
+Results saved to arga_training_no_tta.json
+Processing task 5614dbcf.json in 'train' split.
+Running task.solve() for #5614dbcf
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 840209
+Number of New Nodes Added to Frontier = 17280
+Expanding frontier node with abstraction nbccg
+Found 245 Applicable Filters
+Number of New Candidate Nodes = 5145
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction ccgbr
+Found 345 Applicable Filters
+Number of New Candidate Nodes = 345
+Number of New Nodes Added to Frontier = 0
+Skipping abstraction ccgbr2 as it is the same as abstraction nbccg
+Expanding frontier node with abstraction ccg
+Found 532 Applicable Filters
+Number of New Candidate Nodes = 532
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction mcccg
+Found 124 Applicable Filters
+Number of New Candidate Nodes = 2604
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbvcg
+Found 405 Applicable Filters
+Number of New Candidate Nodes = 405
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbhcg
+Found 437 Applicable Filters
+Number of New Candidate Nodes = 437
+Number of New Nodes Added to Frontier = 0
+Exploring frontier node with score 7 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['crop'], 'transformation_params': [{'corner': 'left upper', 'crop_type': 'symetrics_based', 'grid_size': 3, 'fill_color': 0, 'border_color': 0, 'fill_direction': 'right_to_left', 'connect_all': True}]}]
+Expanding frontier node with abstraction na
+Error solving task 5614dbcf.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task b0c4d837.json in 'train' split.
+Running task.solve() for #b0c4d837
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 828207
+Number of New Nodes Added to Frontier = 20410
+Expanding frontier node with abstraction nbccg
+Found 14 Applicable Filters
+Number of New Candidate Nodes = 180
+Number of New Nodes Added to Frontier = 0
+Skipping abstraction ccgbr as it is the same as abstraction nbccg
+Skipping abstraction ccgbr2 as it is the same as abstraction nbccg
+Expanding frontier node with abstraction ccg
+Found 29 Applicable Filters
+Number of New Candidate Nodes = 29
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction mcccg
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 6
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbvcg
+Found 59 Applicable Filters
+Number of New Candidate Nodes = 59
+Number of New Nodes Added to Frontier = 0
+Expanding frontier node with abstraction nbhcg
+Found 96 Applicable Filters
+Number of New Candidate Nodes = 96
+Number of New Nodes Added to Frontier = 0
+Exploring frontier node with score 14 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['magnet'], 'transformation_params': [{'magnet_type': 'distract', 'shifting_direction': 'dynamic', 'color1': 3, 'color2': 1, 'grid_size': 4}]}]
+Expanding frontier node with abstraction na
+Error solving task b0c4d837.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task 913fb3ed.json in 'train' split.
+Running task.solve() for #913fb3ed
+Initializing Frontier
+Expanding frontier node with abstraction na
+Found 1 Applicable Filters
+Number of New Candidate Nodes = 843021
+Number of New Nodes Added to Frontier = 81961
+Expanding frontier node with abstraction nbccg
+Found 3 Applicable Filters
+Number of New Candidate Nodes = 90
+Number of New Nodes Added to Frontier = 87
+Skipping abstraction ccgbr as it is the same as abstraction nbccg
+Skipping abstraction ccgbr2 as it is the same as abstraction nbccg
+Expanding frontier node with abstraction ccg
+Found 39 Applicable Filters
+Number of New Candidate Nodes = 39
+Number of New Nodes Added to Frontier = 39
+Skipping abstraction mcccg as it is the same as abstraction nbccg
+Skipping abstraction lrg as it is the same as abstraction nbccg
+Skipping abstraction nbvcg as it is the same as abstraction nbccg
+Skipping abstraction nbhcg as it is the same as abstraction nbccg
+Exploring frontier node with score 56 at depth 1 with abstraction na and apply calls:
+[{'filters': [], 'filter_params': [], 'transformation': ['fill'], 'transformation_params': [{'object': 'empty_rectangle', 'color': 0, 'color1': 1}]}]
+Expanding frontier node with abstraction na
+Error solving task 913fb3ed.json with predicted transformations: 'size'
+Results saved to arga_training_no_tta.json
+Processing task 484b58aa.json in 'train' split.
